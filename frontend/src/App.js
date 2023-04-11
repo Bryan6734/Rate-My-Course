@@ -1,19 +1,27 @@
-
+import { useEffect } from "react";
 import "./App.css";
 import SearchBar from "./Components/SearchBar";
+import NavBar from "./Components/NavBar";
 import Courses from "./courses.json";
 
+
 function App() {
-  // When the API is set up, we can fetch from the API.
 
 
   return (
     <div className="App">
-      {/* <div className="nav-bar"></div> */}
-      <h1>Rate My Course</h1>
-      <div className="search-bar">
-        <SearchBar placeholder="Find a Course" data={Courses}></SearchBar>
-      </div>
+    
+        <NavBar></NavBar>
+
+        <section className="hero">
+          <div className="card">
+            <SearchBar placeholder="Rate A Course" data={Courses}></SearchBar>
+          </div>
+      </section>
+      
+      
+
+
     </div>
   );
 }

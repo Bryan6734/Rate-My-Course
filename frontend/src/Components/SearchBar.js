@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
+import ListComponent from "./ListComponent";
 
 // Takes in two props
 function SearchBar({ placeholder, data }) {
-
-  data.sort((a, b) => (a.name > b.name) ? 1 : -1);
+  data.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const uniqueDepts = [...new Set(data.map((course) => course.dept))];
 
   const [filteredData, setFilteredData] = useState([]);
   const [query, setQuery] = useState("");
@@ -15,24 +16,35 @@ function SearchBar({ placeholder, data }) {
     const newFilter = data.filter((course) => {
       // Boolean representing if we want to show or not
       return course.name.toLowerCase().includes(searchTerm.toLowerCase()) && searchTerm.length > 0;
-    }
-    );
+    });
     setFilteredData(newFilter);
-  }
+  };
 
   return (
-    
     <div className="search">
-      <div className="search-inputs">
-        <input type="text" placeholder={placeholder} value={query} onChange={handleChange} />
-        <div className="search-icon"></div>
+
+      <div className="search-filters">
+
+        <ul>
+          <li>Mathematics</li>
+          <li>Sciences</li>
+          <li>English</li>
+          <li>Languages</li>
+          <li>History</li>
+          <li>Arts</li>
+        </ul>
+        
       </div>
 
-      {filteredData.length != 0 && (
+      <div className="search-inputs">
+        <input type="text" placeholder={placeholder} value={query} onChange={handleChange} />
+      </div>
+
+      {filteredData.length !== 0 && (
         <div className="search-results">
           <ul>
             {filteredData.map((course, index) => (
-              <li key={index}>{course.name}</li>
+              <ListComponent course={course} key={index} />
             ))}
           </ul>
         </div>
