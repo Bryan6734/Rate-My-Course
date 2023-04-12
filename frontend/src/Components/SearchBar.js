@@ -5,7 +5,6 @@ import ListComponent from "./ListComponent";
 // Takes in two props
 function SearchBar({ placeholder, data }) {
   data.sort((a, b) => (a.name > b.name ? 1 : -1));
-  const uniqueDepts = [...new Set(data.map((course) => course.dept))];
 
   const [filteredData, setFilteredData] = useState([]);
   const [query, setQuery] = useState("");
@@ -20,18 +19,21 @@ function SearchBar({ placeholder, data }) {
     setFilteredData(newFilter);
   };
 
+
+
   return (
     <div className="search">
 
       <div className="search-filters">
 
         <ul>
-          <li>Mathematics</li>
+          <li>Math</li>
           <li>Sciences</li>
           <li>English</li>
           <li>Languages</li>
           <li>History</li>
           <li>Arts</li>
+          <li>CS</li>
         </ul>
         
       </div>
@@ -44,7 +46,7 @@ function SearchBar({ placeholder, data }) {
         <div className="search-results">
           <ul>
             {filteredData.map((course, index) => (
-              <ListComponent course={course} key={index} />
+              <ListComponent course={course} key={index} index={index} />
             ))}
           </ul>
         </div>

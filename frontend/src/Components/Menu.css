@@ -1,3 +1,14 @@
+hr {
+
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  height: 1px;
+  background-color: var(--tertiary-color);
+  margin-right: 15%;
+
+}
+
 .menu {
   position: fixed;
   right: 0;
@@ -9,6 +20,7 @@
   box-shadow: rgba(99, 99, 99, 0.2) 8px 2px 8px 10px;
   height: 100%;
   width: 280px;
+  z-index: 2;
 }
 
 .menu .close {
@@ -26,7 +38,7 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                         supported by Chrome, Opera and Firefox */
-                        
+
 
 }
 
@@ -45,7 +57,9 @@
   gap: 5px;
 }
 
-.menu-links * {
+
+
+.menu-links li {
   text-decoration: none;
   color: white;
   font-weight: 600;
@@ -79,13 +93,4 @@
   color: var(--secondary-color);
 }
 
-.show {
-  transform: translateX(0);
-  transition: all ease-in-out 0.5s;
-}
 
-.hide {
-  /* slide to the right */
-  transform: translateX(100%);
-  transition: all ease-in-out 0.5s;
-}

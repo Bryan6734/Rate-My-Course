@@ -3,6 +3,7 @@
   --primary-color: #104484;
   --secondary-color: #1f1f1f;
   --tertiary-color: #ffffff;
+  --select-color: #fafafa;
 }
 
 * {
@@ -23,6 +24,9 @@
   width: 100%;
   height: 33px;
   background-color: var(--primary-color);
+  /* Add a box shadow */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1;
 }
 
 .nav-bar {
@@ -34,9 +38,7 @@
   justify-content: space-between;
   padding: 0 10vw;
 
-  border: 1px green solid;
-
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .nav-bar .logo img {
@@ -80,27 +82,20 @@
   background-repeat: no-repeat;
 }
 
-.hero .card {
-  width: 80vw;
-  height: 400px;
 
-  max-width: 1000px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  gap: 20px;
-  border-radius: 20px;
+/* FOR MENU */
+.show {
+  transform: translateX(0);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.8s;
 }
 
-.hero .card .hero-text {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 600;
-  color: var(--secondary-color);
+.hide {
+  /* slide to the right */
+  transform: translateX(100%);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.8s;
+
 }
+
 
 /* if the screen is less than 955 pixels change navbr*/
 
@@ -115,6 +110,10 @@
 
   .nav-bar .logo img {
     width: 250px;
+  }
+
+  .search-filters ul li {
+    display: none;
   }
 }
 
@@ -158,3 +157,5 @@
 
   /* use clamp to adjust the size of the logo (image) */
 }
+
+

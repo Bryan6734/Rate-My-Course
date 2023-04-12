@@ -28,6 +28,7 @@ function NavBar() {
       </nav>
 
       <Menu className="hide"></Menu>
+
     </>
   );
 }

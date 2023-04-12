@@ -1,0 +1,70 @@
+.course-page {
+  padding: 10vw;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.course-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.course-page hr {
+  border: 2.5px solid var(--primary-color);
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.course-page .search-buttons {
+  /* padding: 20px 20px 0px 20px; */
+  padding: 5px;
+  padding-bottom: 0px;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.course-page .search-buttons ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: black;
+}
+
+.course-page .search-buttons ul li {
+  font-weight: 600;
+  color: var(--secondary-color);
+  background: rgba(255, 255, 255, 0.877);
+  padding: 15px;
+
+  border: none;
+  text-align: center;
+
+  font-size: 1rem;
+  margin: 0 2px;
+  flex-grow: 1;
+
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all 0.2s ease-in-out;
+}
+
+.course-page .search-buttons ul li:hover {
+  background-color: rgb(244, 244, 244);
+}
+
+.course-page .dept-header {
+  margin-bottom: 30px;
+}

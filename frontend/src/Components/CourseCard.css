@@ -1,0 +1,44 @@
+.course-card {
+
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 25px;
+
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+
+}
+
+.course-card:hover{
+  background-color: var(--select-color);
+}
+
+
+.course-card .card-desc {
+  max-height: 50px;
+  overflow-y: scroll;
+}
+
+/* Render the table from coursepage.js */
+/*  */
+
+.course-page .course-list {
+
+  /* display as a two column layout with as many rows as you need */
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+
+  list-style: none;
+
+}
+
+.course-page p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}

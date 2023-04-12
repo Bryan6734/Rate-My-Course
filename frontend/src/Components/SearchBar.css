@@ -69,7 +69,7 @@
 }
 
 .search-inputs input {
-  width: 60vw;
+  width: 64vw;
   max-width: 800px;
   height: 60px;
   border: 2px solid #ccc;
@@ -80,7 +80,7 @@
 }
 
 .search-results {
-  width: 60vw;
+  width: 64vw;
   max-width: 800px;
   position: absolute;
   border: none;
@@ -144,7 +144,9 @@
 
 
 @media screen and (max-width: 830px) {
-  .search .search-filters {
-    display: none;
+  .search .search-filters ul li {
+    font-size: 0.8rem;
   }
 }
+
+
