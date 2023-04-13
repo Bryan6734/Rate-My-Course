@@ -1,2 +1,2 @@
-# Rate-My-Teacher
-⭐️ A website where Milton students can rate the teachers they've had for certain courses. 
+# Rate-My-Courses
+⭐️ A website where Milton students can login and rate the different courses they've taken at Milton!
