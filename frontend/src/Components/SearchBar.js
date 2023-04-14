@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
-import ListComponent from "./ListComponent";
+import SearchResult from "./SearchResult";
 
 // Takes in two props
 function SearchBar({ placeholder, data }) {
@@ -19,13 +19,9 @@ function SearchBar({ placeholder, data }) {
     setFilteredData(newFilter);
   };
 
-
-
   return (
     <div className="search">
-
       <div className="search-filters">
-
         <ul>
           <li>Math</li>
           <li>Sciences</li>
@@ -35,7 +31,6 @@ function SearchBar({ placeholder, data }) {
           <li>Arts</li>
           <li>CS</li>
         </ul>
-        
       </div>
 
       <div className="search-inputs">
@@ -46,7 +41,20 @@ function SearchBar({ placeholder, data }) {
         <div className="search-results">
           <ul>
             {filteredData.map((course, index) => (
-              <ListComponent course={course} key={index} index={index} />
+              <SearchResult course={course} key={index} index={index} />
+
+              // Course Ratings
+              // Organization
+              // Difficulty
+              // Work Load
+              // Pace
+
+              // Teacher Ratings
+              // Humor
+              // Grading
+              // Availability
+            
+              
             ))}
           </ul>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
-import "./Course.css";
+import "./CoursePage.css";
 
-function Course({ course }) {
+function CoursePage({ course }) {
 
   const showDescription = () => {
     console.log("show")
@@ -33,4 +33,4 @@ function Course({ course }) {
   );
 }
 
-export default Course;
+export default CoursePage;

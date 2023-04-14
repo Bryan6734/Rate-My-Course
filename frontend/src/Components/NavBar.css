@@ -1,0 +1,118 @@
+.mini-nav-bar {
+  width: 100%;
+  min-height: 33px;
+  background-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 1;
+}
+
+.nav-bar {
+  width: 100vw;
+  min-height: 80px;
+  background-color: var(--tertiary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10vw;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.nav-bar .logo img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav-bar .nav-links {
+  /* border: 1px green dotted; */
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 30px;
+  padding-right: 0;
+  gap: 25%;
+}
+
+.nav-bar .nav-links a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+
+}
+
+.nav-bar .nav-links .open {
+  display: none;
+}
+
+.login-btn, .logout-btn {
+  border: none;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.btn-hide {
+  display: none;
+}
+
+.nav-bar .nav-links .profile-pic {
+  height: 150%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 710px) and (max-width: 955px) {
+  .nav-bar {
+    padding: 0 10vw;
+  }
+
+  .nav-bar .nav-links a {
+    font-size: 1rem;
+  }
+
+  .nav-bar .logo img {
+    /* adjust width using clamp */
+    width: clamp(300px, 10vw, 500px);
+  }
+
+  .mini-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10vw;
+  }
+
+  .mini-nav-bar .mini-nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    gap: 50px;
+  }
+
+  .mini-nav-bar .mini-nav-links a {
+    color: var(--tertiary-color);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* use clamp to adjust the size of the logo (image) */
+}
+
+@media screen and (max-width: 710px) {
+  .nav-bar .nav-links a {
+    display: none;
+  }
+
+  .nav-bar .nav-links img {
+    display: block;
+  }
+
+  .nav-bar .logo img {
+    width: 250px;
+  }
+}

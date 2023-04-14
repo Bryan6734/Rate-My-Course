@@ -23,12 +23,9 @@
   overflow-y: scroll;
 }
 
-/* Render the table from coursepage.js */
-/*  */
+
 
 .course-page .course-list {
-
-  /* display as a two column layout with as many rows as you need */
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

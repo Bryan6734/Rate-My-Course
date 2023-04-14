@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function ListComponent({ course, index }) {
+function SearchResult({ course, index }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -9,8 +9,6 @@ function ListComponent({ course, index }) {
     // console.log(course.dept, course.name);
 
     // URL encode the course.name
-
-
 
     navigate(`/${course.name}`);
   };
@@ -27,4 +25,4 @@ function ListComponent({ course, index }) {
   );
 }
 
-export default ListComponent;
+export default SearchResult;

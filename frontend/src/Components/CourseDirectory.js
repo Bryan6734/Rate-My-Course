@@ -1,9 +1,9 @@
 import React from "react";
-import "./CoursesPage.css";
-import CourseCard from "./CourseCard";
+import "./CourseDirectory.css";
+import CourseCard from "./CourseDirectoryCard";
 import Courses from "../milton-courses-formatted.json";
 
-function CoursesPage() {
+function CourseDirectory() {
   function generateList() {
     const departments = [
       "English",
@@ -28,7 +28,7 @@ function CoursesPage() {
       list.push(
         <div key={index}>
           <hr />
-          <h1 class="dept-header">{dept}</h1>
+          <h1 className="dept-header">{dept}</h1>
           <ul className="course-list">{generateCourses(dept)}</ul>
         </div>
       );
@@ -88,4 +88,4 @@ function CoursesPage() {
   );
 }
 
-export default CoursesPage;
+export default CourseDirectory;

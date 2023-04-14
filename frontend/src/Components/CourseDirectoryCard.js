@@ -1,8 +1,8 @@
 import React from "react";
-import "./CourseCard.css";
+import "./CourseDirectoryCard.css";
 import { useNavigate } from "react-router-dom";
 
-function CourseCard({ course }) {
+function CourseDirectoryCard({ course }) {
 
   const navigate = useNavigate();
 
@@ -23,4 +23,4 @@ function CourseCard({ course }) {
   );
 }
 
-export default CourseCard;
+export default CourseDirectoryCard;
