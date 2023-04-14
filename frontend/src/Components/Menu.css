@@ -1,0 +1,96 @@
+hr {
+
+  padding: 0;
+  margin: 0;
+  width: 200px;
+  height: 1px;
+  background-color: var(--tertiary-color);
+  margin-right: 15%;
+
+}
+
+.menu {
+  position: fixed;
+  right: 0;
+  text-align: right;
+  /* padding: 50px; */
+
+  background-color: #104484b4;
+  backdrop-filter: blur(10px);
+  box-shadow: rgba(99, 99, 99, 0.2) 8px 2px 8px 10px;
+  height: 100%;
+  width: 280px;
+  z-index: 2;
+}
+
+.menu .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 50px;
+  cursor: pointer;
+
+  /* do not highliht image when pressed */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome, Opera and Firefox */
+
+
+}
+
+.menu-links {
+  list-style: none;
+
+  padding: 100px 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 100%;
+
+  gap: 5px;
+}
+
+
+
+.menu-links li {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+
+  margin-right: 15%;
+
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+
+  /* disables text highlighting */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                        supported by Chrome, Opera and Firefox */
+}
+
+.menu-links li:hover {
+  /* transition to a darker opacity */
+
+  background-color: #dcdcdc5c;
+  transition: all ease-in-out 0.2s;
+}
+
+.menu-links a {
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+
