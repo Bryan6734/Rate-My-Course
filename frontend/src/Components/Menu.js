@@ -3,15 +3,17 @@ import "./Menu.css";
 import menuClose from "../Assets/menu-close.png";
 import { useNavigate } from "react-router-dom";
 
-
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
 function Menu() {
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const navigate = useNavigate();
 
   const handleClick = (path) => {
-    navigate(`/${path}`)
-  }
+    navigate(`/${path}`);
+  };
 
   function closeMenu() {
     document.querySelector(".menu").classList.remove("show");
@@ -24,7 +26,7 @@ function Menu() {
       <ul className="menu-links">
         <hr />
         <li onClick={() => handleClick("home")}>Home</li>
-        <li onClick={() => handleClick("courses")}>Courses</li>
+        <li>{localStorage.getItem("user") ? <LogoutButton user={user}></LogoutButton> : <LoginButton></LoginButton>}</li>
         <li>Contact</li>
         <li>Mathematics</li>
         <li>Computer Science</li>

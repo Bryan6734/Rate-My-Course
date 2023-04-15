@@ -11,6 +11,12 @@ export class UsersController {
     return this.usersService.getUser(id);
   }
 
+  // get by googleid
+  @Get('googleid/:googleId')
+  async getUserByGoogleId(@Param('googleId') googleId: string): Promise<User> {
+    return this.usersService.getUserByGoogleId(googleId);
+  }
+
   @Get()
   async getAllUsers(): Promise<User[]> {
     return this.usersService.getAllUsers();
