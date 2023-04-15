@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 export type ReviewDocument = Review & Document;
 
@@ -8,6 +9,9 @@ export type ReviewDocument = Review & Document;
 
 @Schema()
 export class Review {
+  @Prop({ default: () => new ObjectId() })
+  _id: ObjectId;
+
   @Prop({ required: true })
   userId: string;
 
@@ -34,14 +38,13 @@ export class Review {
   @Prop()
   clarity: number;
 
-  // How organized was the content and/or teacher? 
+  // How organized was the content and/or teacher?
   @Prop()
   organization: number;
 
   // Please provide any additional comments about the course.
   @Prop()
   description: string;
-
 }
 
 export const ReviewSchema = SchemaFactory.createForClass(Review);
