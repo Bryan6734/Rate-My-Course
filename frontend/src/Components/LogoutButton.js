@@ -11,9 +11,6 @@ function LogoutButton({ user }) {
     window.location.reload();
   };
 
-  const name = user.name.split(" ")[0];
-  const picture = user.picture;
-
   return (
     <div className="logout-container">
       <img className="profile-pic" onClick={() => logout()} src={user.picture} alt="Image" />
