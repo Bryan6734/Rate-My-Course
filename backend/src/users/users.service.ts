@@ -17,6 +17,10 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
+  async getUserByGoogleId(googleId: string): Promise<User> {
+    return this.userModel.findOne({googleId: googleId}).exec();
+  }
+
   async postUser(user: User): Promise<User> {
     const newUser = new this.userModel(user);
     return newUser.save();

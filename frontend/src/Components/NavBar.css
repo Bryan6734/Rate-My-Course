@@ -38,14 +38,14 @@
   text-decoration: none;
   font-size: 1rem;
   font-weight: 400;
-
 }
 
 .nav-bar .nav-links .open {
   display: none;
 }
 
-.login-btn, .logout-btn {
+.login-btn,
+.logout-btn {
   border: none;
   background-color: transparent;
   border-radius: 5px;
@@ -59,9 +59,15 @@
 }
 
 .nav-bar .nav-links .profile-pic {
-  height: 150%;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  border: 3px solid var(--primary-color);
+}
+
+.nav-bar .nav-links .profile-pic:hover {
+  cursor: pointer;
+  /* border: 3px dotted var(--primary-color); */
 }
 
 @media screen and (min-width: 710px) and (max-width: 955px) {
@@ -104,11 +110,11 @@
 }
 
 @media screen and (max-width: 710px) {
-  .nav-bar .nav-links a {
+  .nav-bar .nav-links :not(.open){
     display: none;
   }
 
-  .nav-bar .nav-links img {
+  .nav-bar .nav-links .open {
     display: block;
   }
 

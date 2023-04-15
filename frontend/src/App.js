@@ -14,8 +14,8 @@ function App() {
     fetch("http://localhost:8000/courses")
       .then((res) => res.json())
       .then((data) => {
-        console.log("ENDPOINT http://localhost:8000/courses");
         setCourses(data);
+        console.log("ENDPOINT http://localhost:8000/courses");
       });
   }, []);
 
