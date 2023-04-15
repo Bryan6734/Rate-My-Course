@@ -9,6 +9,9 @@ export class Course {
   name: string;
 
   @Prop()
+  notes: string;
+
+  @Prop()
   description: string;
 
   @Prop()

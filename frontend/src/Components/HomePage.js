@@ -1,19 +1,16 @@
-import React from 'react'
-import SearchBar from './SearchBar'
-import Courses from '../courses.json'
+import React from "react";
+import SearchBar from "./SearchBar";
+import { useEffect, useState } from "react";
 
+function HomePage( { courses } ) {
 
-
-function HomePage() {
   return (
     <>
       <section className="hero">
-        <SearchBar placeholder="Rate A Course" data={Courses}></SearchBar>
-
-
+        <SearchBar placeholder="Rate A Course" data={courses}></SearchBar>
       </section>
     </>
   );
 }
 
-export default HomePage
+export default HomePage;

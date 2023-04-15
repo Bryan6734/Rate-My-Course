@@ -4,13 +4,16 @@ import { AppService } from './app.service';
 import { TeachersModule } from './teachers/teachers.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { CoursesModule } from './courses/courses.module';
+import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
+
 
 @Module({
   imports: [
     CoursesModule,
     TeachersModule,
     ReviewsModule,
+    UsersModule,
     MongooseModule.forRoot(
       'mongodb+srv://bryansukidi:Bryan6734@cs3-mongodb.ayxucwf.mongodb.net/test',
     ),

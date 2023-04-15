@@ -11,6 +11,11 @@ export class CoursesController {
     return this.coursesService.getCourse(id);
   }
 
+  @Get()
+  async getAllCourses(): Promise<Course[]> {
+    return this.coursesService.getAllCourses();
+  }
+
   @Post()
   async postCourse(@Body() course: Course): Promise<Course> {
     return this.coursesService.postCourse(course);

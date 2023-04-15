@@ -7,10 +7,15 @@ import { Course, CourseDocument } from './courses.model';
 export class CoursesService {
   constructor(
     @InjectModel('Course.name') private courseModel: Model<CourseDocument>,
-  ) {}
+  ) { }
+  
 
   async getCourse(id: string): Promise<Course> {
     return this.courseModel.findById(id).exec();
+  }
+
+  async getAllCourses(): Promise<Course[]> {
+    return this.courseModel.find().exec();
   }
 
   async postCourse(course: Course): Promise<Course> {
