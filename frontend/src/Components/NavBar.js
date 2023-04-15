@@ -25,6 +25,8 @@ function NavBar() {
     onFailure: (response) => console.error(response),
   });
 
+
+
   const logout = () => {
     setUser({});
 

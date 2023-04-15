@@ -12,7 +12,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     TeachersModule,
     ReviewsModule,
     MongooseModule.forRoot(
-      'mongodb+srv://MJoseph24:MJoseph24@cluster0.jeo1kca.mongodb.net/test',
+      'mongodb+srv://bryansukidi:Bryan6734@cs3-mongodb.ayxucwf.mongodb.net/test',
     ),
   ],
   controllers: [AppController],
