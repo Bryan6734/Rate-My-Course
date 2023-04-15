@@ -5,11 +5,7 @@ function SearchResult({ course, index }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // link to course page
-    // console.log(course.dept, course.name);
-
-    // URL encode the course.name
-
+  
     navigate(`/${course.name}`);
   };
 
@@ -18,7 +14,7 @@ function SearchResult({ course, index }) {
       <li key={index} onClick={() => handleClick()}>
         <div className="search-text">
           <p className="name">{course.name}</p>
-          <p className="other">{course.dept}</p>
+          <p className="other">{course.department}</p>
         </div>
       </li>
     </>

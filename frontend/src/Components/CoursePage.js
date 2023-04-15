@@ -17,13 +17,13 @@ function CoursePage({ course }) {
       <h1 className="name">{course.name}</h1>
 
       <div className="details">
-        {course.dept !== "" && <p className="dept">{course.dept}</p>}
+        {course.dept !== "" && <p className="dept">{course.department}</p>}
         {course.notes !== "" && <p className="notes">{course.notes}</p>}
       </div>
 
       <div className="desc" onClick={() => showDescription()}>
         <h2>About This Course</h2>
-        <p className="">{course.desc}</p>
+        <p className="">{course.description}</p>
       </div>
 
       <div className="reviews">
