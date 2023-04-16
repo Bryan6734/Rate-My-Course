@@ -37,22 +37,43 @@
   border: none;
   border-radius: 5px;
   padding: 5px;
-  font-size: 0.8rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--primary-color);
-  text-align: right;
+  text-align: left;
   width: fit-content;
 }
 
-.course-page .desc {
+.course-page .dropdowns {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid var(--primary-color); */
+  margin-top: 30px;
+  gap: 20px;
+}
+
+.course-page .dropdowns h2 {
+  cursor: pointer;
+}
+
+.course-page .dropdowns .desc > * {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+.course-page .dropdowns > div:hover {
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  transform: scale(1.01);
+}
+
+.course-page .dropdowns .desc,
+.course-page .dropdowns .review-form {
   background-color: var(--tertiary-color);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 30px;
-  /* margin: 20px 0; */
 
   border: none;
   border-radius: 5px;
@@ -60,24 +81,35 @@
   font-size: 1rem;
 
   text-align: left;
-
+  max-height: 62px;
+  transition: max-height 0.5s ease-in-out;
+  overflow: hidden;
 }
 
-
-.course-page .desc:hover {
-  background-color: rgb(250, 250, 250);
+.course-page .dropdowns .animate-in {
+  max-height: 600px;
+  transition: max-height 0.5s ease-in-out;
 }
 
-.course-page .desc p {
-  display: inline-block;
-  max-height: fit-content;
-  transition: 0.5s ease-in-out all;
+.course-page .dropdowns .desc .desc-hidden {
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
 }
 
-.course-page .desc .desc-hide {
-  display: none;
-  max-height: 0;
-  transition: 0.5s ease-in-out all;
+.course-page .dropdowns .review-form .review-form-hidden {
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
+}
+
+.course-page .dropdowns .review-form #title {
+
+  font-size: 1.25rem;
+
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  width: 60%;
+
 }
 
 .course-page .reviews {
