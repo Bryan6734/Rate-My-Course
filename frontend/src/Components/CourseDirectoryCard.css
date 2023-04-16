@@ -23,19 +23,3 @@
   overflow-y: scroll;
 }
 
-
-
-.course-page .course-list {
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 20px;
-
-  list-style: none;
-
-}
-
-.course-page p {
-  font-size: 1.2rem;
-  font-weight: 400;
-}

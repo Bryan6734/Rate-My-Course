@@ -1,9 +1,9 @@
 import React from "react";
 import "./CourseDirectory.css";
-import CourseCard from "./CourseDirectoryCard";
-import Courses from "../milton-courses-formatted.json";
+import CourseDirectoryCard from "./CourseDirectoryCard";
 
-function CourseDirectory() {
+
+function CourseDirectory( { courses }) {
   function generateList() {
     const departments = [
       "English",
@@ -22,7 +22,6 @@ function CourseDirectory() {
 
     let list = [];
 
-    // include h2 for each department title and just generate list of courses for that department
 
     departments.forEach((dept, index) => {
       list.push(
@@ -40,11 +39,11 @@ function CourseDirectory() {
   function generateCourses(dept) {
     let list = [];
 
-    Courses.forEach((course, index) => {
-      if (course.dept === dept) {
+    courses.forEach((course, index) => {
+      if (course.department === dept) {
         list.push(
           <li key={index}>
-            <CourseCard key={index} course={course} />
+            <CourseDirectoryCard key={index} course={course} />
           </li>
         );
       }

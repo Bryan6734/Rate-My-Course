@@ -15,36 +15,44 @@ export class Review {
   @Prop({ required: true })
   userId: string;
 
+  // Originally, we weren't going to store the courseId in the review as the parent would already have it.
+  // However, for scalability, this may be the better option.
+  @Prop({ required: true })
+  courseId: string;
+
   @Prop()
   teacherId: string;
 
+  @Prop({ required: true })
+  title: string;
+
   // How interesting/engaging was the content of the course?
-  @Prop()
+  @Prop({ required: true })
   content: number;
 
   // How difficult was the course?
-  @Prop()
+  @Prop( { required: true })
   difficulty: number;
 
   // How much work did the course require?
-  @Prop()
+  @Prop( { required: true })
   workload: number;
 
   // What was the pacing of the course like?
-  @Prop()
+  @Prop( { required: true })
   pacing: number;
 
   // How clear was the instructor of this course?
-  @Prop()
+  @Prop( { required: true })
   clarity: number;
 
   // How organized was the content and/or teacher?
-  @Prop()
+  @Prop( { required: true })
   organization: number;
 
   // Please provide any additional comments about the course.
-  @Prop()
-  description: string;
+  @Prop( )
+  description: string; 
 }
 
 export const ReviewSchema = SchemaFactory.createForClass(Review);

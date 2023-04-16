@@ -11,6 +11,19 @@
   font-weight: 600;
 }
 
+.course-page .course-list {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  list-style: none;
+}
+
+.course-page p {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
 .course-page hr {
   border: 2.5px solid var(--primary-color);
   border-radius: 5px;

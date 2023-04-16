@@ -13,6 +13,10 @@ export class ReviewsService {
     return this.reviewModel.findById(id).exec();
   }
 
+  async getReviewsByCourseId(courseId: string): Promise<Review[]> {
+    return this.reviewModel.find({ "courseId": courseId }).exec();
+  }
+
   async postReview(review: Review): Promise<Review> {
     const newReview = new this.reviewModel(review);
     return newReview.save();
@@ -23,14 +27,14 @@ export class ReviewsService {
   }
 
   async updateReview(review: Review): Promise<Review> {
-    return this.reviewModel.findByIdAndUpdate(review.id, review, {
+    return this.reviewModel.findByIdAndUpdate(review._id, review, {
       new: true,
     });
   }
 
-  async getTeacherIds(reviewId: string): Promise<string[]> {
+  async getTeacherId(reviewId: string): Promise<string> {
     const review = await this.reviewModel.findById(reviewId).exec();
-    const teacherId = review.teacherName;
-    return [teacherId];
+    return review.teacherId;
+    
   }
 }

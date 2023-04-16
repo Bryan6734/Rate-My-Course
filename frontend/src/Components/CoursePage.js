@@ -1,7 +1,10 @@
 import React from "react";
 import "./CoursePage.css";
+import ReviewDashboard from "./ReviewDashboard";
 
 function CoursePage({ course }) {
+
+
 
   const showDescription = () => {
     console.log("show")
@@ -10,6 +13,9 @@ function CoursePage({ course }) {
     const desc = document.querySelector(".desc p");
     desc.classList.toggle("desc-hide");
   }
+
+
+
 
   return (
     <div className="course-page">
@@ -28,6 +34,9 @@ function CoursePage({ course }) {
 
       <div className="reviews">
         <h1>Student Reviews</h1>
+
+        <ReviewDashboard course={course}></ReviewDashboard>
+
       </div>
     </div>
   );

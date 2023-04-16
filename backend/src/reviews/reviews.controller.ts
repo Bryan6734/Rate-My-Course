@@ -19,6 +19,11 @@ export class ReviewsController {
     return this.reviewsService.getReview(id);
   }
 
+  @Get('course/:id')
+  async getReviewsByCourseId(@Param('id') courseId: string): Promise<Review[]> {
+    return this.reviewsService.getReviewsByCourseId(courseId);
+  }
+
   @Post()
   async postReview(@Body() review: Review): Promise<Review> {
     return this.reviewsService.postReview(review);
@@ -35,7 +40,7 @@ export class ReviewsController {
   }
 
   @Get(':id/teachers')
-  async getTeacherIds(@Param('id') id: string): Promise<string[]> {
-    return this.reviewsService.getTeacherIds(id);
+  async getTeacherIds(@Param('id') id: string): Promise<string> {
+    return this.reviewsService.getTeacherId(id);
   }
 }
