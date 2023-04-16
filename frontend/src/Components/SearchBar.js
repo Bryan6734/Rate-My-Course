@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./SearchBar.css";
 import SearchResult from "./SearchResult";
+import { useNavigate } from "react-router-dom";
 
 // Takes in two props
 function SearchBar({ placeholder, data }) {
@@ -8,6 +9,7 @@ function SearchBar({ placeholder, data }) {
 
   const [filteredData, setFilteredData] = useState([]);
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const searchTerm = event.target.value;
@@ -19,17 +21,26 @@ function SearchBar({ placeholder, data }) {
     setFilteredData(newFilter);
   };
 
+  const handleButtonClick = (event, otherRef = null) => {
+    var dept = event.target.innerHTML;
+    if (otherRef !== null) {
+      dept = otherRef;
+    }
+
+    navigate(`/courses`, { state: { department: dept } });
+  };
+
   return (
     <div className="search">
       <div className="search-filters">
         <ul>
-          <li>Math</li>
-          <li>Sciences</li>
-          <li>English</li>
-          <li>Languages</li>
-          <li>History</li>
-          <li>Arts</li>
-          <li>CS</li>
+          <li onClick={handleButtonClick}>Mathematics</li>
+          <li onClick={handleButtonClick}>Science</li>
+          <li onClick={handleButtonClick}>English</li>
+          <li onClick={(event) => handleButtonClick(event, "Classics")}>Languages</li>
+          <li onClick={(event) => handleButtonClick(event, "History & Social Sciences")}>History</li>
+          <li onClick={(event) => handleButtonClick(event, "Music")}>Arts</li>
+          <li onClick={(event) => handleButtonClick(event, "Computer Science")}>CS</li>
         </ul>
       </div>
 
@@ -43,16 +54,6 @@ function SearchBar({ placeholder, data }) {
             {filteredData.map((course, index) => (
               <SearchResult course={course} key={index} index={index} />
 
-              // Course Ratings
-              // Organization
-              // Difficulty
-              // Work Load
-              // Pace
-
-              // Teacher Ratings
-              // Humor
-              // Grading
-              // Availability
             ))}
           </ul>
         </div>
