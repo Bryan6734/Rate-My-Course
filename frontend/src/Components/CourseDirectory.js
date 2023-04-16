@@ -1,56 +1,79 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./CourseDirectory.css";
 import CourseDirectoryCard from "./CourseDirectoryCard";
 
+function CourseDirectory({ courses }) {
+  const [courseList, setCourseList] = useState([]);
 
-function CourseDirectory( { courses }) {
-  function generateList() {
-    const departments = [
-      "English",
-      "History & Social Sciences",
-      "Mathematics",
-      "Science",
-      "Computer Science",
-      "Classics",
-      "Chinese",
-      "French",
-      "Spanish",
-      "Music",
-      "Performing Arts",
-      "Visual Arts",
-    ];
+  const handleButtonClick = (event, otherRef = null) => {
+    const dept = event.target.innerHTML;
 
-    let list = [];
+    var deptRef = document.getElementById(dept);
+    if (deptRef === null) {
+      deptRef = document.getElementById(otherRef);
+    }
 
+    deptRef.scrollIntoView({ behavior: "smooth" });
+  };
 
-    departments.forEach((dept, index) => {
-      list.push(
-        <div key={index}>
-          <hr />
-          <h1 className="dept-header">{dept}</h1>
-          <ul className="course-list">{generateCourses(dept)}</ul>
-        </div>
-      );
-    });
+  useEffect(() => {
 
-    return list;
-  }
+    // Returns all course components matching a given department 
+    function generateCourses(dept) {
+      let list = [];
 
-  function generateCourses(dept) {
-    let list = [];
+      courses.forEach((course, index) => {
+        if (course.department === dept) {
+          list.push(
+            <li key={index}>
+              <CourseDirectoryCard key={index} course={course} />
+            </li>
+          );
+        }
+      });
 
-    courses.forEach((course, index) => {
-      if (course.department === dept) {
+      return list;
+    }
+
+    // Returns all department components
+    function generateList() {
+      const departments = [
+        "English",
+        "History & Social Sciences",
+        "Mathematics",
+        "Science",
+        "Computer Science",
+        "Classics",
+        "Chinese",
+        "French",
+        "Spanish",
+        "Music",
+        "Performing Arts",
+        "Visual Arts",
+      ];
+
+      let list = [];
+
+      departments.forEach((dept, index) => {
         list.push(
-          <li key={index}>
-            <CourseDirectoryCard key={index} course={course} />
-          </li>
+          <div key={index}>
+            <hr />
+            <h1 className="dept-header" id={dept}>
+              {dept}
+            </h1>
+            <ul className="course-list">{generateCourses(dept)}</ul>
+          </div>
         );
-      }
-    });
+      });
 
-    return list;
-  }
+      return list;
+    }
+    
+    const htmlCourses = generateList();
+
+    setCourseList(htmlCourses);
+    console.log(htmlCourses);
+  }, [courses]);
 
   return (
     <div className="course-page">
@@ -68,21 +91,19 @@ function CourseDirectory( { courses }) {
 
       <div className="search-buttons">
         <ul>
-          <li>Math</li>
-          <li>Sciences</li>
-          <li>English</li>
+          <li onClick={handleButtonClick}>Mathematics</li>
+          <li onClick={handleButtonClick}>Science</li>
+          <li onClick={handleButtonClick}>English</li>
         </ul>
         <ul>
-          <li>Languages</li>
-          <li>History</li>
-          <li>Arts</li>
-          <li>CS</li>
+          <li onClick={(event) => handleButtonClick(event, "Classics")}>Languages</li>
+          <li onClick={(event) => handleButtonClick(event, "History & Social Sciences")}>History</li>
+          <li onClick={(event) => handleButtonClick(event, "Music")}>Arts</li>
+          <li onClick={(event) => handleButtonClick(event, "Computer Science")}>CS</li>
         </ul>
       </div>
 
-      {generateList()}
-
-      {/* <ul className="course-list">{generateList()}</ul> */}
+      {courseList}
     </div>
   );
 }
