@@ -101,16 +101,116 @@
   transition: opacity 0.1s ease-in;
 }
 
-.course-page .dropdowns .review-form #title {
+.review-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 10px 0;
+}
 
+.course-page .dropdowns .review-form #title {
   font-size: 1.25rem;
 
   border: 1px solid #e0e0e0;
+
   border-radius: 5px;
   padding: 10px;
   width: 60%;
 
 }
+
+.course-page .dropdowns .review-form #title::placeholder {
+  font-weight: 400;
+}
+
+.course-page .dropdowns .review-form .sliders {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  gap: 10px;
+}
+
+.sliders .slider {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 7.5px;
+}
+
+.sliders .slider input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 5px;
+  background: #d3d3d352;
+  outline: none;
+  opacity: 0.9;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.sliders .slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.review-form form #description {
+  font-size: 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+  height: 100px;
+  resize: none;
+}
+
+.review-final-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-final-row .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.review-final-row .buttons button {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+
+  padding: 15px 100px;
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.review-final-row .buttons button:hover {
+  transition: background-color 0.2s ease-in-out;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+
+.char-count {
+  font-size: 0.75rem;
+  text-align: right;
+  color: #a0a0a0;
+}
+
 
 .course-page .reviews {
   display: flex;
