@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
+
 
 function LoginButton() {
 
@@ -10,8 +10,10 @@ function LoginButton() {
       console.log("OAuth2 response:", response);
 
       const user = await getUserFromGoogle(response.access_token);
-      const userInMongoDB = await findUserInMongoDB(user, response.access_token);
-
+      const mongoDBUser = await findUserInMongoDB(user, response.access_token);
+      
+      console.log("User:", user);
+      console.log("MongoDB User:", mongoDBUser);
       window.location.reload();
 
     },
@@ -56,7 +58,7 @@ function LoginButton() {
 
   // Post user to MongoDB if they are not already in the database
   async function postUserToMongoDB(user, accessToken) {
-    const response = await fetch("http://127.0.0.1:8000/users", {
+    await fetch("http://127.0.0.1:8000/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

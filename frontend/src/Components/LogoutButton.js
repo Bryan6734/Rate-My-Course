@@ -17,7 +17,7 @@ function LogoutButton({ user, menuRender=false }) {
             Logout
           </button>
           :
-          <img className="profile-pic" onClick={() => logout()} src={user.picture} alt="Image" />
+          <img className="profile-pic" onClick={() => logout()} src={user.picture} alt="Logout"/>
 
       }
 

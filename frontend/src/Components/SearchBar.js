@@ -53,8 +53,6 @@ function SearchBar({ placeholder, data }) {
               // Humor
               // Grading
               // Availability
-            
-              
             ))}
           </ul>
         </div>
