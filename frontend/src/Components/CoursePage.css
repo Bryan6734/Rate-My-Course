@@ -64,6 +64,7 @@
 .course-page .dropdowns > div:hover {
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
   transform: scale(1.01);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .course-page .dropdowns .desc,
@@ -116,7 +117,6 @@
   border-radius: 5px;
   padding: 10px;
   width: 60%;
-
 }
 
 .course-page .dropdowns .review-form #title::placeholder {
@@ -210,7 +210,6 @@
   text-align: right;
   color: #a0a0a0;
 }
-
 
 .course-page .reviews {
   display: flex;

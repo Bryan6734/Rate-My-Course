@@ -3,7 +3,16 @@ import "./CoursePage.css";
 import ReviewDashboard from "./ReviewDashboard";
 
 function CoursePage({ course }) {
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    title: "",
+    content: 50,
+    difficulty: 50,
+    workload: 50,
+    pacing: 50,
+    clarity: 50,
+    organization: 50,
+    description: "",
+  });
   const [charCount, setCharCount] = useState(0);
   const maxCharCount = 200;
 
@@ -67,11 +76,38 @@ function CoursePage({ course }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Submitting");
+    if (!localStorage.getItem("user")) {
+      alert("You must be logged in to submit a review");
+      return;
+    }
 
-    const x = JSON.stringify(inputs);
-    console.log(x);
+    // make sure all fields are filled out. title and descriptions should not bne empty.
+    if (Object.keys(inputs).length !== 8 || inputs.title === "" || inputs.description === "") {
+      alert("Please fill out all fields");
+      return;
+    }
+
+    e.preventDefault();
+    // Should we use ObjectId or Googleid for the review params?
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    const review = { ...inputs, courseId: course._id, userId: userId };
+    
+    const reviewData = JSON.stringify(review);
+
+    fetch("http://127.0.0.1:8000/reviews/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: reviewData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        alert("Review submitted!");
+      })
+    
+  
   };
 
   return (
@@ -146,7 +182,16 @@ function CoursePage({ course }) {
                 <button type="submit">Submit</button>
                 <button type="reset" onClick={(e) => {
                   e.preventDefault();
-                  setInputs({});
+                  setInputs({
+                    title: "",
+                    content: 50,
+                    difficulty: 50,
+                    workload: 50,
+                    pacing: 50,
+                    clarity: 50,
+                    organization: 50,
+                    description: "",
+                  });
                   setCharCount(0);
                 }}>Reset</button>
               </div>

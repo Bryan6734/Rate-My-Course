@@ -29,7 +29,7 @@ function ReviewCard({ course, review, criteria }) {
               <h3>{criterion.charAt(0).toUpperCase() + criterion.slice(1)}</h3>
 
               <div className="bar">
-                <div className="bar-fill" style={{ width: `${review[criterion] * 20}%` }}></div>
+                <div className="bar-fill" style={{ width: `${review[criterion]}%` }}></div>
               </div>
             </div>
           );
