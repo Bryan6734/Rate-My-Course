@@ -16,7 +16,7 @@ function ReviewDashboard({ course }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [course._id]);
 
   return (
     <div className="review-dashboard">

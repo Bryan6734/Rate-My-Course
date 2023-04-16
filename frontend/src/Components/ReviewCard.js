@@ -13,7 +13,7 @@ function ReviewCard({ course, review, criteria }) {
       <div className="header-container">
         <div className="title">
           <h2>{review.title}</h2>
-          <p className="">2023-2024</p>
+          <p className="details">Fall Semester 2023-2024</p>
         </div>
         <div className="learn-more">?</div>
       </div>

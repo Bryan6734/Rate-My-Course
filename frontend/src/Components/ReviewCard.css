@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .learn-more {
@@ -27,7 +28,25 @@
   height: 20px;
 }
 
+.review-card .header-container .title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
+.review-card .header-container .title .details {
+  background-color: var(--tertiary-color);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: right;
+  width: fit-content;
+}
 
 .review-card:hover {
   box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
@@ -53,7 +72,6 @@
   flex-direction: row;
   gap: 5px;
   align-items: center;
-
 }
 
 .criterion .bar .bar-fill {
@@ -63,7 +81,7 @@
   filter: opacity(0.8);
 }
 
-@media screen and (max-width: 925px){
+@media screen and (max-width: 925px) {
   .criteria {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
