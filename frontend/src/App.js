@@ -33,7 +33,7 @@ function App() {
 
       <Routes>
         <Route path="*" element={<HomePage courses={courses} />}></Route>
-        <Route path="/courses" element={<CourseDirectory />}></Route>
+        <Route path="/courses" element={<CourseDirectory courses={courses} />}></Route>
 
         {createRoutes()}
       </Routes>

@@ -59,7 +59,7 @@ hr {
 
 
 
-.menu-links li {
+.menu-links li, .menu-links li button {
   text-decoration: none;
   color: white;
   font-weight: 600;
@@ -79,6 +79,11 @@ hr {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                         supported by Chrome, Opera and Firefox */
+}
+
+.menu-links li button {
+  margin: 0;
+  padding: 0;
 }
 
 .menu-links li:hover {
