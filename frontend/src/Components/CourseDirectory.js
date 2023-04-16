@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import "./CourseDirectory.css";
 import CourseDirectoryCard from "./CourseDirectoryCard";
+import { useLocation } from "react-router-dom";
 
 function CourseDirectory({ courses }) {
   const [courseList, setCourseList] = useState([]);
+  const location = useLocation();
 
   const handleButtonClick = (event, otherRef = null) => {
     const dept = event.target.innerHTML;
@@ -17,8 +19,7 @@ function CourseDirectory({ courses }) {
   };
 
   useEffect(() => {
-
-    // Returns all course components matching a given department 
+    // Returns all course components matching a given department
     function generateCourses(dept) {
       let list = [];
 
@@ -68,12 +69,26 @@ function CourseDirectory({ courses }) {
 
       return list;
     }
-    
+
     const htmlCourses = generateList();
 
     setCourseList(htmlCourses);
-    console.log(htmlCourses);
   }, [courses]);
+
+  useEffect(() => {
+    // how to check if the state contains a department?
+
+    if (location.state !== null) {
+      const interval = setInterval(() => {
+        var deptRef = document.getElementById(location.state.department);
+        if (deptRef !== null) {
+          deptRef.scrollIntoView({ behavior: "smooth" });
+          clearInterval(interval);
+        }
+      }, 200);
+    } else {
+    }
+  }, [location.state]);
 
   return (
     <div className="course-page">
@@ -91,9 +106,15 @@ function CourseDirectory({ courses }) {
 
       <div className="search-buttons">
         <ul>
-          <li onClick={handleButtonClick}>Mathematics</li>
-          <li onClick={handleButtonClick}>Science</li>
-          <li onClick={handleButtonClick}>English</li>
+          <li id="Mathematics-btn" onClick={handleButtonClick}>
+            Mathematics
+          </li>
+          <li id="Science-btn" onClick={handleButtonClick}>
+            Science
+          </li>
+          <li id="English-btn" onClick={handleButtonClick}>
+            English
+          </li>
         </ul>
         <ul>
           <li onClick={(event) => handleButtonClick(event, "Classics")}>Languages</li>
