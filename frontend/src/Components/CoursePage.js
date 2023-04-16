@@ -42,7 +42,7 @@ function CoursePage({ course }) {
   const showReviewForm = () => {
     const review = document.querySelector(".review-form");
     const reviewContents = review.querySelectorAll(":scope > *:not(h2)");
-    console.log("Showing review form");
+    console.log("Toggling");
 
     if (!localStorage.getItem("user")) {
       alert("You must be logged in to submit a review");
@@ -91,7 +91,7 @@ function CoursePage({ course }) {
     // Should we use ObjectId or Googleid for the review params?
     const userId = JSON.parse(localStorage.getItem("user")).id;
     const review = { ...inputs, courseId: course._id, userId: userId };
-    
+
     const reviewData = JSON.stringify(review);
 
     fetch("http://127.0.0.1:8000/reviews/", {
@@ -105,9 +105,7 @@ function CoursePage({ course }) {
       .then((data) => {
         console.log(data);
         alert("Review submitted!");
-      })
-    
-  
+      });
   };
 
   return (
@@ -180,20 +178,25 @@ function CoursePage({ course }) {
             <div className="review-final-row">
               <div className="buttons">
                 <button type="submit">Submit</button>
-                <button type="reset" onClick={(e) => {
-                  e.preventDefault();
-                  setInputs({
-                    title: "",
-                    content: 50,
-                    difficulty: 50,
-                    workload: 50,
-                    pacing: 50,
-                    clarity: 50,
-                    organization: 50,
-                    description: "",
-                  });
-                  setCharCount(0);
-                }}>Reset</button>
+                <button
+                  type="reset"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setInputs({
+                      title: "",
+                      content: 50,
+                      difficulty: 50,
+                      workload: 50,
+                      pacing: 50,
+                      clarity: 50,
+                      organization: 50,
+                      description: "",
+                    });
+                    setCharCount(0);
+                  }}
+                >
+                  Reset
+                </button>
               </div>
 
               <p className="char-count">
