@@ -26,7 +26,7 @@ function Menu() {
       <ul className="menu-links">
         <hr />
         <li onClick={() => handleClick("home")}>Home</li>
-        <li>{localStorage.getItem("user") ? <LogoutButton user={user}></LogoutButton> : <LoginButton></LoginButton>}</li>
+        <li>{localStorage.getItem("user") ? <LogoutButton user={user}menuRender={true}></LogoutButton> : <LoginButton></LoginButton>}</li>
         <li onClick={() => {
           navigate("/courses")
         }}>Courses</li>

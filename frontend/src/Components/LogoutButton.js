@@ -1,10 +1,7 @@
 import React from "react";
 
-// <button className="logout-btn" onClick={() => logout()}>
-//   {/* {name} */}
-// </button>;
 
-function LogoutButton({ user }) {
+function LogoutButton({ user, menuRender=false }) {
   const logout = () => {
     localStorage.removeItem("user");
     console.log("Logging out.");
@@ -13,7 +10,17 @@ function LogoutButton({ user }) {
 
   return (
     <div className="logout-container">
-      <img className="profile-pic" onClick={() => logout()} src={user.picture} alt="Image" />
+
+      {
+        menuRender ?
+          <button className="login-btn" onClick={() => logout()}>
+            Logout
+          </button>
+          :
+          <img className="profile-pic" onClick={() => logout()} src={user.picture} alt="Image" />
+
+      }
+
     </div>
   );
 }
