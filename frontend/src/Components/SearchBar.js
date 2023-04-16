@@ -53,6 +53,7 @@ function SearchBar({ placeholder, data }) {
           <ul>
             {filteredData.map((course, index) => (
               <SearchResult course={course} key={index} index={index} />
+
             ))}
           </ul>
         </div>

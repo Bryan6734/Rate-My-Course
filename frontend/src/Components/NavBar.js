@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import miltonLogo from "../Assets/milton-logo-final.png";
 import menuIcon from "../Assets/menu-icon.png";
 import Menu from "./Menu";

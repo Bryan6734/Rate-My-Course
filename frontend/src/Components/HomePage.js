@@ -1,6 +1,5 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import { useEffect, useState } from "react";
 
 function HomePage( { courses } ) {
 
