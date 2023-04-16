@@ -52,21 +52,6 @@
   gap: 20px;
 }
 
-.course-page .dropdowns h2 {
-  cursor: pointer;
-}
-
-.course-page .dropdowns .desc > * {
-  opacity: 1;
-  transition: opacity 0.1s ease-in;
-}
-
-.course-page .dropdowns > div:hover {
-  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
-  transform: scale(1.01);
-  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
 .course-page .dropdowns .desc,
 .course-page .dropdowns .review-form {
   background-color: var(--tertiary-color);
@@ -83,18 +68,36 @@
 
   text-align: left;
   max-height: 62px;
-  transition: max-height 0.5s ease-in-out;
+
+  /* Controls the hover in and out*/
+  transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), max-height 0.5s ease-in-out;
+
   overflow: hidden;
 }
 
+.course-page .dropdowns h2 {
+  cursor: pointer;
+}
+
+.course-page .dropdowns .desc > * {
+  opacity: 1;
+  transition: opacity 0.1s ease-in;
+}
+
+.course-page .dropdowns > div:hover {
+  box-shadow: rgba(99, 99, 99, 0.3) 0px 2px 8px 0px;
+  transform: scale(1.025);
+}
+
+
 .course-page .dropdowns .animate-in {
   max-height: 600px;
-  transition: max-height 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .course-page .dropdowns .desc .desc-hidden {
-  opacity: 0;
-  transition: opacity 0.1s ease-in;
+  /* opacity: 0;
+  transition: opacity 0.1s ease-in; */
 }
 
 .course-page .dropdowns .review-form .review-form-hidden {
