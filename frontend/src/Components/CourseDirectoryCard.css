@@ -23,3 +23,20 @@
   overflow-y: scroll;
 }
 
+
+@media screen and (max-width: 700px){
+  .course-card h2 {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .course-card {
+    padding: 20px;
+  }
+
+  .course-card h2 {
+    font-size: 1.5rem;
+  }
+}
+

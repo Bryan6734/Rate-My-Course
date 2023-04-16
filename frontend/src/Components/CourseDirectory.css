@@ -14,7 +14,7 @@
 .course-page .course-list {
 
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
   list-style: none;
 }
@@ -80,4 +80,10 @@
 
 .course-page .dept-header {
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 500px){
+  .course-page .course-list {
+    grid-template-columns: 1fr;
+  }
 }
