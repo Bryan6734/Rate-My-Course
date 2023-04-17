@@ -4,7 +4,7 @@ import menuIcon from "../Assets/menu-icon.png";
 import Menu from "./Menu";
 import "./NavBar.css";
 import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import AccountButton from "./AccountButton";
 import { Link } from "react-router-dom";
 
 function NavBar() {
@@ -33,7 +33,7 @@ function NavBar() {
 
           {localStorage.getItem("user") ? (
 
-            <LogoutButton user={user}></LogoutButton>
+            <AccountButton user={user}></AccountButton>
           ) : (
             <LoginButton></LoginButton>
           )}

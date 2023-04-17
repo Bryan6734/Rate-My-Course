@@ -21,6 +21,18 @@ export class CoursesService {
     }
 
     return course;
+
+  }
+
+  async getCoursesByIds(ids: string[]): Promise<Course[]> {
+    const courses = await this.courseModel.find({ _id: { $in: ids } }).exec();
+    if (!courses || courses.length === 0) {
+      throw new NotFoundException('Could not find courses.');
+    }
+
+    return courses;
+
+
   }
 
   async getAllCourses(): Promise<Course[]> {
@@ -65,7 +77,7 @@ export class CoursesService {
   }
 
   async updateCourse(id: string, course: Course): Promise<Course> {
-    
+
     let updatedCourse;
     try {
       updatedCourse = await this.courseModel.findById(id).exec();

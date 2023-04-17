@@ -1,0 +1,95 @@
+.user-page {
+  padding: 10vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-page hr {
+  border: 2.5px solid var(--primary-color);
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.user-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.user-page p {
+  font-size: 1.25rem;
+}
+
+.user-page .profile-card {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+  padding: 20px;
+
+  width: 100%;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.user-page .profile-card .info {
+  display: flex;
+  flex-direction: column;
+
+
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profile-card img {
+  width: 200px;
+  height: 200px;
+  border: none;
+  border-radius: 20px;
+}
+
+.profile-card .info h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+
+
+.user-page .reviews .review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+
+
+  width: 100%;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+}
+
+.buttons .btn {
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: transparent;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttons .btn:hover {
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+
+
+

@@ -70,6 +70,9 @@
   /* border: 3px dotted var(--primary-color); */
 }
 
+
+
+
 @media screen and (min-width: 710px) and (max-width: 955px) {
   .nav-bar {
     padding: 0 10vw;
