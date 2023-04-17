@@ -9,9 +9,8 @@ export type ReviewDocument = Review & Document;
 
 @Schema()
 export class Review {
-
   @Prop({ required: true })
-  userId: string;
+  googleId: string;
 
   // Originally, we weren't going to store the courseId in the review as the parent would already have it.
   // However, for scalability, this may be the better option.

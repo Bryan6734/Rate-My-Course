@@ -31,8 +31,8 @@ export class ReviewsController {
   }
 
   @Get('user/:id')
-  async getReviewsByUserId(@Param('id') userId: string): Promise<Review[]> {
-    return this.reviewsService.getReviewsByUserId(userId);
+  async getReviewsByUserId(@Param('id') googleId: string): Promise<Review[]> {
+    return this.reviewsService.getReviewsByGoogleId(googleId);
   }
 
   @Post()

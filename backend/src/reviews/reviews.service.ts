@@ -38,11 +38,12 @@ export class ReviewsService {
     return review;
   }
 
-  async getReviewsByUserId(userId: string): Promise<Review[]> {
+  async getReviewsByGoogleId(googleId: string): Promise<Review[]> {
     let review;
     try {
-      review = await this.reviewModel.find({ userId: userId }).exec();
+      review = await this.reviewModel.find({ googleId: googleId }).exec();
     } catch (error) {
+      console.log("Error finding")
       throw new NotFoundException('Could not find review.');
     }
     if (!review) {
