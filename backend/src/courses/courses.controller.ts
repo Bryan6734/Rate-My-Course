@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Query } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { Course } from './courses.model';
 
@@ -8,7 +8,15 @@ export class CoursesController {
 
   @Get('/:id')
   async getCourse(@Param('id') id: string): Promise<Course> {
+    console.log("runnig getCourse")
     return this.coursesService.getCourse(id);
+  }
+
+  @Get('ids/multiple')
+  async getCoursesByIds(@Query('ids') ids: string): Promise<Course[]> {
+    // convert query ids to list
+    const allIds: string[] = ids.split(',');
+    return this.coursesService.getCoursesByIds(allIds);
   }
 
   @Get()
