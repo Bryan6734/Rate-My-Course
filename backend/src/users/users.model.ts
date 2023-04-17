@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
 
+
 export type UserDocument = User & Document;
 
 @Schema()
@@ -17,7 +18,13 @@ export class User {
   accessToken: string;
 
   @Prop({ required: true })
-  name: string;
+  firstName: string;
+
+  @Prop({ required: true })
+  lastName: string;
+
+  @Prop({ required: true })
+  graduationYear: number;
 
   @Prop({ required: true })
   email: string;

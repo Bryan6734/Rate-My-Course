@@ -6,6 +6,7 @@ import {
   Delete,
   Put,
   Param,
+  Patch,
 } from '@nestjs/common';
 import { ReviewsService } from './reviews.service';
 import { Review } from './reviews.model';
@@ -13,6 +14,11 @@ import { Review } from './reviews.model';
 @Controller('reviews')
 export class ReviewsController {
   constructor(private reviewsService: ReviewsService) {}
+
+  @Get()
+  async getAllReviews(): Promise<Review[]> {
+    return this.reviewsService.getAllReviews();
+  }
 
   @Get(':id')
   async getReview(@Param('id') id: string): Promise<Review> {
@@ -34,13 +40,12 @@ export class ReviewsController {
     return this.reviewsService.deleteReview(id);
   }
 
-  @Put()
-  async updateReview(@Body() review: Review): Promise<Review> {
-    return this.reviewsService.updateReview(review);
-  }
-
-  @Get(':id/teachers')
-  async getTeacherIds(@Param('id') id: string): Promise<string> {
-    return this.reviewsService.getTeacherId(id);
+  @Patch(':id')
+  async updateReview(
+    @Param('id') id: string,
+    @Body() review: Review,
+  ): Promise<Review> {
+    return this.reviewsService.updateReview(id, review);
   }
 }
+

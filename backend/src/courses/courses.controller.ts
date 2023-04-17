@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { Course } from './courses.model';
 
@@ -6,7 +6,7 @@ import { Course } from './courses.model';
 export class CoursesController {
   constructor(private coursesService: CoursesService) {}
 
-  @Get(':id')
+  @Get('/:id')
   async getCourse(@Param('id') id: string): Promise<Course> {
     return this.coursesService.getCourse(id);
   }
@@ -31,8 +31,11 @@ export class CoursesController {
     return this.coursesService.getReviewIds(id);
   }
 
-  @Put()
-  async updateCourse(@Body() course: Course): Promise<Course> {
-    return this.coursesService.updateCourse(course);
-  } 
+  @Patch(':id')
+  async updateCourse(
+    @Param('id') id: string,
+    @Body() course: Course,
+  ): Promise<Course> {
+    return this.coursesService.updateCourse(id, course);
+  }
 }
