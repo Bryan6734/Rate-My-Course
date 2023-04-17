@@ -5,8 +5,10 @@ import Menu from "./Menu";
 import "./NavBar.css";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
+import { Link } from "react-router-dom";
 
 function NavBar() {
+
   function openMenu() {
     document.querySelector(".menu").classList.remove("hide");
     document.querySelector(".menu").classList.add("show");
@@ -26,8 +28,8 @@ function NavBar() {
         </div>
 
         <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/courses">Courses</a>
+          <Link to="/">Home</Link>
+          <Link to="/courses">Courses</Link>
 
           {localStorage.getItem("user") ? (
 
