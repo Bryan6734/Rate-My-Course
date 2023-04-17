@@ -6,7 +6,6 @@ export type TeacherDocument = Teacher & Document;
 
 @Schema()
 export class Teacher {
-
   @Prop({ default: () => new ObjectId() })
   _id: ObjectId;
 
@@ -21,9 +20,6 @@ export class Teacher {
 
   @Prop()
   email: string;
-
-  @Prop()
-  id: string;
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher);

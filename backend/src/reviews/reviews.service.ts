@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Review, ReviewDocument } from './reviews.model';
@@ -10,11 +10,36 @@ export class ReviewsService {
   ) {}
 
   async getReview(id: string): Promise<Review> {
-    return this.reviewModel.findById(id).exec();
+    let review;
+
+    try {
+      review = await this.reviewModel.findById(id).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find review.');
+    }
+    if (!review) {
+      throw new NotFoundException('Could not find review.');
+    }
+
+    return review;
   }
 
   async getReviewsByCourseId(courseId: string): Promise<Review[]> {
-    return this.reviewModel.find({ "courseId": courseId }).exec();
+    let review;
+    try {
+      review = await this.reviewModel.find({ courseId: courseId }).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find review.');
+    }
+    if (!review) {
+      throw new NotFoundException('Could not find review.');
+    }
+
+    return review;
+  }
+
+  async getAllReviews(): Promise<Review[]> {
+    return this.reviewModel.find().exec();
   }
 
   async postReview(review: Review): Promise<Review> {
@@ -23,18 +48,34 @@ export class ReviewsService {
   }
 
   async deleteReview(id: string): Promise<any> {
-    return this.reviewModel.findByIdAndDelete(id).exec();
+    let review;
+    try {
+      review = await this.reviewModel.findById(id).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find review.');
+    }
+    if (!review) {
+      throw new NotFoundException('Could not find review.');
+    }
+
+    return review;
   }
 
-  async updateReview(review: Review): Promise<Review> {
-    return this.reviewModel.findByIdAndUpdate(review._id, review, {
-      new: true,
-    });
-  }
+  async updateReview(id: string, review: Review): Promise<Review> {
 
-  async getTeacherId(reviewId: string): Promise<string> {
-    const review = await this.reviewModel.findById(reviewId).exec();
-    return review.teacherId;
-    
+    let updatedReview;
+    try {
+      updatedReview = await this.reviewModel.findById(id).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find review.');
+    }
+    if (!updatedReview) {
+      throw new NotFoundException('Could not find review.');
+    }
+
+    updatedReview = Object.assign(updatedReview, review);
+
+    return updatedReview.save();
+
   }
 }
