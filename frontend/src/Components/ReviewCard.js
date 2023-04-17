@@ -1,19 +1,19 @@
 import React from "react";
 import "./ReviewCard.css";
 
-function ReviewCard({ course, review, criteria }) {
+function ReviewCard({ review, details }) {
+  const criteria = ["content", "difficulty", "workload", "pacing", "clarity", "organization"];
+
   const handleClick = () => {
     console.log("Clicked card");
   };
-
-
 
   return (
     <div className="review-card" onClick={() => handleClick()}>
       <div className="header-container">
         <div className="title">
           <h2>{review.title}</h2>
-          <p className="details">Fall Semester 2023-2024</p>
+          <p className="details">{details}</p>
         </div>
         <div className="learn-more">?</div>
       </div>

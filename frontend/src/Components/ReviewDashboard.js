@@ -4,7 +4,6 @@ import ReviewCard from "./ReviewCard";
 
 function ReviewDashboard({ course }) {
   const [reviews, setReviews] = useState([]);
-  const criteria = ["content", "difficulty", "workload", "pacing", "clarity", "organization"];
 
   useEffect(() => {
     console.log(`QUERY http://127.0.0.1:8000/reviews/course/${course._id}`);
@@ -21,7 +20,7 @@ function ReviewDashboard({ course }) {
   return (
     <div className="review-dashboard">
       {reviews.map((review, index) => {
-        return <ReviewCard key={index} course={course} review={review} criteria={criteria} />;
+        return <ReviewCard key={index} review={review}/>;
       })}
     </div>
   );
