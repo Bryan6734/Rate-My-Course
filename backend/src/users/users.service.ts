@@ -44,10 +44,23 @@ export class UsersService {
     return newUser.save();
   }
 
-  async updateUser(user: User): Promise<User> {
-    return this.userModel.findByIdAndUpdate(user.googleId, user, {
-      new: true,
-    });
+  async updateUser(id: string, user: User): Promise<User> {
+    let updatedUser;
+
+    try {
+      updatedUser = await this.userModel.findById(id).exec();
+
+    } catch (error) {
+      throw new NotFoundException('Could not find user.');
+    }
+
+    if (!updatedUser) {
+      throw new NotFoundException('Could not find user.');
+    }
+
+    updatedUser = Object.assign(updatedUser, user);
+
+    return updatedUser.save();
   }
 
   async deleteUser(id: string): Promise<User> {
