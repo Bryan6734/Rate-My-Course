@@ -1,63 +1,71 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 
-
 function LoginButton() {
-
   // Generate the GoogleLogin component and run login functions on success
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       console.log("OAuth2 response:", response);
 
-      const user = await getUserFromGoogle(response.access_token);
-      const mongoDBUser = await findUserInMongoDB(user, response.access_token);
-      
-      console.log("User:", user);
+      const googleUserData = await getUserFromGoogle(response.access_token);
+      const mongoDBUser = await findUserInMongoDB(googleUserData, response.access_token);
+
+      console.log("User:", googleUserData);
       console.log("MongoDB User:", mongoDBUser);
       window.location.reload();
-
     },
     onFailure: (response) => console.error(response),
   });
 
   // Get user information from Google and return a JSON object
-  async function getUserFromGoogle(accessToken){
+  async function getUserFromGoogle(accessToken) {
     const response = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    const user = await response.json();
+    const googleUserData = await response.json();
 
-    return { googleId: user.id, ...user };
+    return { googleId: googleUserData.id, ...googleUserData };
   }
 
   // Check if the user's email ends with @milton.edu. If so, check if the user is in mongoDB. If not, create a new user in mongoDB.
   async function findUserInMongoDB(user, accessToken) {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users/googleId/" + user.googleId);
 
-    const response = await fetch("http://127.0.0.1:8000/users/googleId/" + user.googleId);
-
-    const emailEnding = "@milton.edu";
-    if (user.email.endsWith(emailEnding)) {
       const text = await response.text();
 
-      if (text.length === 0) {
-        console.log("User not found in MongoDB. Creating new user.");
-        await postUserToMongoDB(user, accessToken);
+      if (!user.email.endsWith("@milton.edu")) {
+        alert("You must use a Milton email to login.");
+        console.log("User is not a Milton student.");
+        return null;
       } else {
-        console.log("User found in MongoDB.");
+        if (response.status === 404) {
+          console.log("User not found in MongoDB. Creating new user.");
+          await postUserToMongoDB(user, accessToken);
+        } else if (response.status === 200) {
+          console.log("User found in MongoDB.");
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          alert("An error occured. Status code: " + response.status, ". Please email Bryan.");
+        }
       }
-
-      // Save user to localStorage (change later to use cookies)
-      localStorage.setItem("user", JSON.stringify(user));
-      return true;
-    } else {
-      return false;
+    } catch (error) {
+      return null;
     }
   }
 
-  // Post user to MongoDB if they are not already in the database
   async function postUserToMongoDB(user, accessToken) {
+    var graduationYear = user.email.match(/\d+/g);
+    if (graduationYear) {
+      graduationYear = "20" + graduationYear[0];
+    } else {
+      graduationYear = 0;
+    }
+
+    graduationYear = parseInt(graduationYear);
+
     await fetch("http://127.0.0.1:8000/users", {
       method: "POST",
       headers: {
@@ -66,12 +74,13 @@ function LoginButton() {
       body: JSON.stringify({
         googleId: user.googleId,
         accessToken: accessToken,
-        name: user.name,
+        firstName: user.given_name,
+        lastName: user.family_name,
+        graduationYear: graduationYear,
         email: user.email,
         picture: user.picture,
       }),
     });
-
   }
 
   return (
