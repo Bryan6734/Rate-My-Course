@@ -1,0 +1,56 @@
+.user-page {
+  padding: 10vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-page hr {
+  border: 2.5px solid var(--primary-color);
+  border-radius: 5px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.user-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.user-page p {
+  font-size: 1.25rem;
+}
+
+.user-page .profile-card {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 20px;
+  padding: 20px;
+
+  width: 100%;
+
+  border: none;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.profile-card img {
+  width: 200px;
+  height: 200px;
+  border: none;
+  border-radius: 20px;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.profile-card .info h2 {
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+

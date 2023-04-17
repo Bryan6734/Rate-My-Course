@@ -30,6 +30,7 @@ function NavBar() {
         <div className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/courses">Courses</Link>
+          <Link to="/account">Account</Link>
 
           {localStorage.getItem("user") ? (
 

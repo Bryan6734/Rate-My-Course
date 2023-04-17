@@ -4,6 +4,7 @@ import HomePage from "./Components/HomePage";
 import { Routes, Route } from "react-router-dom";
 import Course from "./Components/CoursePage";
 import CourseDirectory from "./Components/CourseDirectory";
+import UserProfile from "./Components/UserProfile";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <Routes>
         <Route path="*" element={<HomePage courses={courses} />}></Route>
         <Route path="/courses" element={<CourseDirectory courses={courses} />}></Route>
+        <Route path="/account" element={<UserProfile/>}></Route>
 
         {createRoutes()}
       </Routes>
