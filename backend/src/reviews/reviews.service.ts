@@ -38,6 +38,7 @@ export class ReviewsService {
     return review;
   }
 
+
   async getReviewsByGoogleId(googleId: string): Promise<Review[]> {
     let review;
     try {
@@ -52,6 +53,8 @@ export class ReviewsService {
 
     return review;
   }
+
+
 
   async getAllReviews(): Promise<Review[]> {
     return this.reviewModel.find().exec();
@@ -77,6 +80,7 @@ export class ReviewsService {
   }
 
   async updateReview(id: string, review: Review): Promise<Review> {
+
     let updatedReview;
     try {
       updatedReview = await this.reviewModel.findById(id).exec();
@@ -90,5 +94,6 @@ export class ReviewsService {
     updatedReview = Object.assign(updatedReview, review);
 
     return updatedReview.save();
+
   }
 }
