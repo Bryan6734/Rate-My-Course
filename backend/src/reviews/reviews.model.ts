@@ -9,8 +9,6 @@ export type ReviewDocument = Review & Document;
 
 @Schema()
 export class Review {
-  @Prop({ default: () => new ObjectId() })
-  _id: ObjectId;
 
   @Prop({ required: true })
   userId: string;
@@ -31,28 +29,28 @@ export class Review {
   content: number;
 
   // How difficult was the course?
-  @Prop( { required: true })
+  @Prop({ required: true })
   difficulty: number;
 
   // How much work did the course require?
-  @Prop( { required: true })
+  @Prop({ required: true })
   workload: number;
 
   // What was the pacing of the course like?
-  @Prop( { required: true })
+  @Prop({ required: true })
   pacing: number;
 
   // How clear was the instructor of this course?
-  @Prop( { required: true })
+  @Prop({ required: true })
   clarity: number;
 
   // How organized was the content and/or teacher?
-  @Prop( { required: true })
+  @Prop({ required: true })
   organization: number;
 
   // Please provide any additional comments about the course.
-  @Prop( )
-  description: string; 
+  @Prop()
+  description: string;
 }
 
 export const ReviewSchema = SchemaFactory.createForClass(Review);

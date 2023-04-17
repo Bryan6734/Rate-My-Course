@@ -1,25 +1,21 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ObjectId } from 'mongodb';
+
 
 export type CourseDocument = Course & Document;
 
 @Schema()
 export class Course {
-  
-  @Prop({ default: () => new ObjectId() })
-  _id: ObjectId;
-
-  @Prop()
+  @Prop({ required: true })
   name: string;
 
   @Prop()
   notes: string;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
-  @Prop()
+  @Prop({ required: true })
   department: string;
 
   @Prop()
@@ -27,9 +23,6 @@ export class Course {
 
   @Prop()
   reviews: string[];
-
-  @Prop()
-  id: string;
 }
 
 export const CourseSchema = SchemaFactory.createForClass(Course);
