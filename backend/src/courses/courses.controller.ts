@@ -1,5 +1,5 @@
 
-import { Controller, Get, Post, Body, Param, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Patch, Query } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { Course } from './courses.model';
 
