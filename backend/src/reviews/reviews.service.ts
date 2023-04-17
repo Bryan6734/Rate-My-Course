@@ -38,6 +38,20 @@ export class ReviewsService {
     return review;
   }
 
+  async getReviewsByUserId(userId: string): Promise<Review[]> {
+    let review;
+    try {
+      review = await this.reviewModel.find({ userId: userId }).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find review.');
+    }
+    if (!review) {
+      throw new NotFoundException('Could not find review.');
+    }
+
+    return review;
+  }
+
   async getAllReviews(): Promise<Review[]> {
     return this.reviewModel.find().exec();
   }
@@ -62,7 +76,6 @@ export class ReviewsService {
   }
 
   async updateReview(id: string, review: Review): Promise<Review> {
-
     let updatedReview;
     try {
       updatedReview = await this.reviewModel.findById(id).exec();
@@ -76,6 +89,5 @@ export class ReviewsService {
     updatedReview = Object.assign(updatedReview, review);
 
     return updatedReview.save();
-
   }
 }
