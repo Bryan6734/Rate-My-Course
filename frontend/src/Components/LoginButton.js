@@ -34,8 +34,6 @@ function LoginButton() {
     try {
       const response = await fetch("http://127.0.0.1:8000/users/googleId/" + user.googleId);
 
-      const text = await response.text();
-
       if (!user.email.endsWith("@milton.edu")) {
         alert("You must use a Milton email to login.");
         console.log("User is not a Milton student.");

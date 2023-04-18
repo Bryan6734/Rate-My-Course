@@ -20,8 +20,7 @@ function CoursePage({ course }) {
     const desc = document.querySelector(".desc");
     const descContents = desc.querySelectorAll("p");
 
-    console.log("Animating desc");
-    console.log(desc.classList.contains("animate-in"));
+
 
     desc.classList.toggle("animate-in");
 
@@ -42,7 +41,6 @@ function CoursePage({ course }) {
   const showReviewForm = () => {
     const review = document.querySelector(".review-form");
     const reviewContents = review.querySelectorAll(":scope > *:not(h2)");
-    console.log("Toggling");
 
     if (!localStorage.getItem("user")) {
       alert("You must be logged in to submit a review");
