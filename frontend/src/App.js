@@ -8,7 +8,6 @@ import UserProfile from "./Components/UserProfile";
 import { useEffect, useState } from "react";
 
 function App() {
-
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -16,17 +15,9 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);
-        console.log("ENDPOINT http://localhost:8000/courses");
       });
   }, []);
-
-  function createRoutes() {
-    let routes = [];
-    courses.forEach((course, index) => {
-      routes.push(<Route key={index} path={`${course.name}`} element={<Course course={course} />}></Route>);
-    });
-    return routes;
-  }
+  
 
   return (
     <div className="App">
@@ -35,9 +26,17 @@ function App() {
       <Routes>
         <Route path="*" element={<HomePage courses={courses} />}></Route>
         <Route path="/courses" element={<CourseDirectory courses={courses} />}></Route>
-        <Route path="/account" element={<UserProfile/>}></Route>
+        <Route path="/account" element={<UserProfile />}></Route>
 
-        {createRoutes()}
+        {courses.map((course, index) => (
+          <Route
+            key={index}
+            path={"/" + course.name}
+            element={<Course course={course} />}
+          ></Route>
+        ))}
+
+
       </Routes>
     </div>
   );
