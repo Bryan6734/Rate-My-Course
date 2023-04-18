@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
 
 function UserProfile() {
+
+  const navigate = useNavigate();
+  const [reviews, setReviews] = useState([]);
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -13,8 +16,6 @@ function UserProfile() {
     graduationYear: "",
     picture: "",
   });
-  const [reviews, setReviews] = useState([]);
-  const navigate = useNavigate();
 
   const handleClick = (event, courseName) => {
     navigate("/" + courseName);
@@ -36,6 +37,13 @@ function UserProfile() {
   };
 
   useEffect(() => {
+
+    if (localStorage.getItem("user") === null) {
+      alert("Please login to view your profile.")
+      navigate("/");
+      return;
+    }
+
     const googleId = JSON.parse(localStorage.getItem("user")).googleId;
 
     // API: user w/ googleId -> reviews -> courses
@@ -63,9 +71,12 @@ function UserProfile() {
     };
 
     getUserReviews();
-  }, []);
 
-  return (
+  }, [navigate]);
+
+  const userPage = () => {
+    return (
+
     <div className="user-page">
       <hr />
       <h1>Account Profile</h1>
@@ -101,7 +112,17 @@ function UserProfile() {
           })}
         </div>
       </div>
-    </div>
+      </div>
+
+    );
+  }
+  
+
+  return (
+    <>
+      {user.firstName !== "" && userPage()}
+  
+    </>
   );
 }
 
