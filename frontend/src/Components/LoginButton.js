@@ -26,7 +26,13 @@ function LoginButton() {
     });
     const googleUserData = await response.json();
 
-    return { googleId: googleUserData.id, ...googleUserData };
+    return {
+      googleId: googleUserData.id,
+      firstName: googleUserData.given_name,
+      lastName: googleUserData.family_name,
+      email: googleUserData.email,
+      picture: googleUserData.picture,
+    };
   }
 
   // Check if the user's email ends with @milton.edu. If so, check if the user is in mongoDB. If not, create a new user in mongoDB.

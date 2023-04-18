@@ -14,7 +14,7 @@ function CoursePage({ course }) {
     description: "",
   });
   const [charCount, setCharCount] = useState(0);
-  const maxCharCount = 200;
+  const maxCharCount = 300;
 
   const showDescription = () => {
     const desc = document.querySelector(".desc");
@@ -74,36 +74,59 @@ function CoursePage({ course }) {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (!localStorage.getItem("user")) {
       alert("You must be logged in to submit a review");
       return;
     }
 
-    // make sure all fields are filled out. title and descriptions should not bne empty.
     if (Object.keys(inputs).length !== 8 || inputs.title === "" || inputs.description === "") {
       alert("Please fill out all fields");
       return;
     }
 
-    e.preventDefault();
-    // Should we use ObjectId or Googleid for the review params?
-    const userId = JSON.parse(localStorage.getItem("user")).id;
-    const review = { ...inputs, courseId: course._id, userId: userId };
 
-    const reviewData = JSON.stringify(review);
+    const googleId = JSON.parse(localStorage.getItem("user")).googleId;
+    const reviewData = JSON.stringify({ ...inputs, courseId: course._id, googleId: googleId });
 
-    fetch("http://127.0.0.1:8000/reviews/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: reviewData,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        alert("Review submitted!");
+    // Checks for duplicated user review and returns a promise that resolves to a boolean
+    const checkUserDuplicateReviews = async () => {
+      // Obtain all the reviews written by the user
+      const response = await fetch(`http://127.0.0.1:8000/reviews/user/${googleId}`);
+      const allUserReviews = await response.json();
+
+      return allUserReviews.some((review) => review.courseId === course._id);
+    };
+
+    // Submits a review to MongoDB and returns a promise that resolves to the response
+    const submitReview = async () => {
+      const response = await fetch(`http://127.0.0.1:8000/reviews/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: reviewData,
       });
+
+      const data = await response.json();
+
+      console.log(response.status);
+      console.log(response.statusText);
+
+      if (response.ok) {
+        alert("Review submitted successfully");
+      } else {
+        alert("There was an error submitting your review");
+      }
+    };
+
+    checkUserDuplicateReviews().then((result) => {
+      if (result) {
+        alert("You have already submitted a review for this course");
+      } else {
+        submitReview();
+      }
+    });
   };
 
   return (
