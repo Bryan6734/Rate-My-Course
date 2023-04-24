@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Course, CourseDocument } from './courses.model';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class CoursesService {
@@ -25,10 +26,31 @@ export class CoursesService {
   }
 
   async getCoursesByIds(ids: string[]): Promise<Course[]> {
-    const courses = await this.courseModel.find({ _id: { $in: ids } }).exec();
-    if (!courses || courses.length === 0) {
+    if (ids.length === 0 || ids === undefined) {
       throw new NotFoundException('Could not find courses.');
     }
+
+    const emptyList = ids.every(id => id === '');
+    if (emptyList) {
+      throw new NotFoundException('Could not find courses.');
+    }
+
+    const objectIds = ids.map(id => {
+      console.log(id);
+      return new ObjectId(id);
+    });
+
+    let courses;
+    try {
+      courses = await this.courseModel.find({
+        _id: {
+          $in: objectIds
+        }
+      }).exec();
+    } catch (error) {
+      throw new NotFoundException('Could not find courses.');
+    }
+
 
     return courses;
 

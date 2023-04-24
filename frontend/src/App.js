@@ -17,7 +17,10 @@ function App() {
         setCourses(data);
       });
   }, []);
-  
+
+  useEffect(() => {
+    console.log(localStorage.getItem("user"));
+  });
 
   return (
     <div className="App">
@@ -29,14 +32,8 @@ function App() {
         <Route path="/account" element={<UserProfile />}></Route>
 
         {courses.map((course, index) => (
-          <Route
-            key={index}
-            path={"/" + course.name}
-            element={<Course course={course} />}
-          ></Route>
+          <Route key={index} path={"/" + course.name} element={<Course course={course} />}></Route>
         ))}
-
-
       </Routes>
     </div>
   );

@@ -12,6 +12,8 @@ function LoginButton() {
 
       console.log("User:", googleUserData);
       console.log("MongoDB User:", mongoDBUser);
+
+      localStorage.setItem("user", JSON.stringify(mongoDBUser));
       window.location.reload();
     },
     onFailure: (response) => console.error(response),
@@ -45,12 +47,17 @@ function LoginButton() {
         console.log("User is not a Milton student.");
         return null;
       } else {
+
+        // If there is no response, create a new user in MongoDB
         if (response.status === 404) {
           console.log("User not found in MongoDB. Creating new user.");
           await postUserToMongoDB(user, accessToken);
+
+        // If the response goes through, retrieve the user data.
         } else if (response.status === 200) {
           console.log("User found in MongoDB.");
-          localStorage.setItem("user", JSON.stringify(user));
+
+
         } else {
           alert("An error occured. Status code: " + response.status, ". Please email Bryan.");
         }
@@ -58,6 +65,8 @@ function LoginButton() {
     } catch (error) {
       return null;
     }
+
+    return user; 
   }
 
   async function postUserToMongoDB(user, accessToken) {
@@ -70,6 +79,9 @@ function LoginButton() {
 
     graduationYear = parseInt(graduationYear);
 
+    console.log("posting user to mongoDB. NEW:")
+    console.log(user)
+
     await fetch("http://127.0.0.1:8000/users", {
       method: "POST",
       headers: {
@@ -78,8 +90,8 @@ function LoginButton() {
       body: JSON.stringify({
         googleId: user.googleId,
         accessToken: accessToken,
-        firstName: user.given_name,
-        lastName: user.family_name,
+        firstName: user.firstName,
+        lastName: user.lastName,
         graduationYear: graduationYear,
         email: user.email,
         picture: user.picture,
