@@ -18,9 +18,10 @@ function App() {
       });
   }, []);
 
+  // Make sure that the user is stored. Prints the user.
   useEffect(() => {
     console.log(localStorage.getItem("user"));
-  });
+  }, []);
 
   return (
     <div className="App">
