@@ -95,7 +95,7 @@ function CourseDirectory({ courses }) {
       <hr />
       <h1>Course Catalog</h1>
       <p>
-        This catalogue holds within its pages myriad opportunities for you as a scholar. The courses described enrich the Milton Academy curriculum,
+        This catalog holds within its pages myriad opportunities for you as a scholar. The courses described enrich the Milton Academy curriculum,
         and I encourage you to take your time as you read about and consider the offerings you’ll find here.
       </p>
       <p>
