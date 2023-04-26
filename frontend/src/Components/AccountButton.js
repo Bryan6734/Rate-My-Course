@@ -4,6 +4,17 @@ import { useNavigate } from "react-router-dom";
 function AccountButton({ menuRender = false }) {
 
   const navigate = useNavigate();
+  const [picture, setPicture] = useState("");
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setPicture(user.picture);
+      const profilePic = document.querySelector(".profile-pic");
+      profilePic.src = user.picture;
+
+    }
+  }, [])
 
 
   return (
@@ -13,7 +24,7 @@ function AccountButton({ menuRender = false }) {
           Logout
         </button>
       ) : (
-        <img className="profile-pic" onClick={() => navigate("/account")}  alt="User" />
+          <img className="profile-pic" src={ picture } onClick={() => navigate("/account")}  alt="User" />
       )}
     </div>
   );
