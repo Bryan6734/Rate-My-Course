@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function AccountButton({ user, menuRender = false }) {
+function AccountButton({ menuRender = false }) {
+
   const navigate = useNavigate();
+
 
   return (
     <div className="logout-container">
@@ -11,7 +13,7 @@ function AccountButton({ user, menuRender = false }) {
           Logout
         </button>
       ) : (
-        <img className="profile-pic" onClick={() => navigate("/account")} src={user.picture} alt="Account" />
+        <img className="profile-pic" onClick={() => navigate("/account")}  alt="User" />
       )}
     </div>
   );

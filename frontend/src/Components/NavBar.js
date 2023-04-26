@@ -33,7 +33,7 @@ function NavBar() {
 
           {localStorage.getItem("user") ? (
 
-            <AccountButton user={user}></AccountButton>
+            <AccountButton></AccountButton>
           ) : (
             <LoginButton></LoginButton>
           )}
