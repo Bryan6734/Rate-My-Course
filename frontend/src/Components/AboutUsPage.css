@@ -99,7 +99,6 @@
   text-align: center;
   padding: 10px 8%;
   text-align: justify;
-
 }
 
 .about-us-page .developers .developer img {
@@ -107,4 +106,22 @@
   height: 30vw;
   border-radius: 15px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .about-us-page .about-us-team .developers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-us-page .developers .developer img {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .about-us-page .developers .developer p {
+    padding: 10px 0;
+    text-align: center;
+  }
 }

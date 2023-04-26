@@ -62,11 +62,13 @@ function AboutUsPage() {
 
             <div className="title-desc">
               <p>
-                Melvin Joseph '24 is a junior at Milton Academy. He is currently taking Adv CS: Applications and as a co-developer, he collaborated in
-                brainstorming this website while focusing on the backend. Some of his interests include economics, speech, and personal health, and in
-                his free time, he enjoys reading, making websites, and traveling.
+                Hey everyone! I’m <a target="_blank" href="https://www.linkedin.com/in/melvin-joseph-159010219">Melvin Joseph</a> ‘24, and I’m a junior at Milton Academy. As a
+                co-developer of Rate My Course, I helped brainstorm and developed the backend. I’m interested in creating educational solutions using
+                technology and economics. In my free time, I enjoy reading, competing in speech, and traveling!
               </p>
-              <p className="email"><span>melvin_joseph24@milton.edu</span></p>
+              <p className="email">
+                <span>melvin_joseph24@milton.edu</span>
+              </p>
             </div>
           </div>
         </div>
