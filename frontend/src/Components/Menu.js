@@ -30,6 +30,7 @@ function Menu() {
         <li onClick={() => {
           navigate("/courses")
         }}>Courses</li>
+        <li onClick={() => handleClick("about-us")}>About Us</li>
         <li>Mathematics</li>
         <li>Computer Science</li>
         <li>Sciences</li>
