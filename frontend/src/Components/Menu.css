@@ -12,6 +12,7 @@ hr {
 .menu {
   position: fixed;
   right: 0;
+
   text-align: right;
   /* padding: 50px; */
 
@@ -24,10 +25,11 @@ hr {
 }
 
 .menu .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px;
+
+  position: relative;
+
+  margin-bottom: 20px;
+  margin-right: 15%;
   cursor: pointer;
 
   /* do not highliht image when pressed */
@@ -45,7 +47,7 @@ hr {
 .menu-links {
   list-style: none;
 
-  padding: 100px 0;
+  padding: 50px 0;
   margin: 0;
 
   display: flex;
@@ -96,6 +98,24 @@ hr {
 .menu-links a {
   text-decoration: none;
   color: var(--secondary-color);
+}
+
+@media screen and (max-height: 700px){
+
+  /* how to select all li but NOT hr */
+  .menu-links li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .menu-links li, .menu-links li button {
+    font-size: 1.2rem;
+  }
+
+  .menu-links {
+
+    overflow-y: scroll;
+  }
 }
 
 

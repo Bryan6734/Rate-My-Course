@@ -1,0 +1,126 @@
+.about-us-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10vw;
+  margin-top: 20px;
+}
+
+.about-us-page a {
+  color: var(--primary-color);
+}
+
+.about-us-page .about-us-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  gap: 10px;
+}
+
+.about-us-page p {
+  font-size: 1.2rem;
+}
+
+.about-us-page hr {
+  border: 2.5px solid var(--primary-color);
+  border-radius: 5px;
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+.about-us-page h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.about-us-page .developers .developer h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.about-us-page .about-us-team .developers {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: start;
+}
+
+.about-us-page .developers .developer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  /* border: 1px dotted green; */
+
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.about-us-page .developers .developer .title-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.about-us-page span {
+  background-color: var(--tertiary-color);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-align: left;
+  width: fit-content;
+}
+
+.about-us-page .email {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-us-page .developers .developer p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 10px 8%;
+  text-align: justify;
+}
+
+.about-us-page .developers .developer img {
+  width: 30vw;
+  height: 30vw;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+  .about-us-page .about-us-team .developers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-us-page .developers .developer img {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .about-us-page .developers .developer p {
+    padding: 10px 0;
+    text-align: center;
+  }
+}
