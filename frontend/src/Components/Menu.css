@@ -24,10 +24,9 @@ hr {
 }
 
 .menu .close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px;
+
+  position: relative;
+  margin-right: 15%;
   cursor: pointer;
 
   /* do not highliht image when pressed */
@@ -96,6 +95,23 @@ hr {
 .menu-links a {
   text-decoration: none;
   color: var(--secondary-color);
+}
+
+@media screen and (max-height: 700px){
+
+  .menu-links li {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .menu-links li, .menu-links li button {
+    font-size: 1.2rem;
+  }
+
+  .menu-links {
+    gap: 20px;
+    overflow-y: scroll;
+  }
 }
 
 
