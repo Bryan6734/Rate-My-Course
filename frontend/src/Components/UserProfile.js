@@ -16,6 +16,8 @@ function UserProfile() {
     picture: "",
   });
 
+  const [picture, setPicture] = useState("");
+
   const handleClick = (event, courseName) => {
     navigate("/" + courseName);
   };
@@ -72,6 +74,16 @@ function UserProfile() {
     getUserReviews();
   }, [navigate]);
 
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setPicture(user.picture);
+      const profilePic = document.querySelector(".profile-pic");
+      profilePic.src = user.picture;
+      
+    }
+  }, [])
+
   const userPage = () => {
     return (
       <div className="user-page">
@@ -79,7 +91,7 @@ function UserProfile() {
         <h1>Account Profile</h1>
 
         <div className="profile-card">
-          <img src={user.picture} alt="User" />
+          <img className="profile-pic" src={picture} alt="User" />
           <div className="info">
             <div className="info-text">
               <h2>{user.firstName + " " + user.lastName}</h2>

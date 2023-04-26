@@ -6,6 +6,7 @@ function ReviewCard({ review, details }) {
 
   const handleClick = () => {
     console.log("Clicked card");
+    console.log(review)
   };
 
   return (
@@ -13,7 +14,7 @@ function ReviewCard({ review, details }) {
       <div className="header-container">
         <div className="title">
           <h2>{review.title}</h2>
-          <p className="details">{details}</p>
+          <p className="details">Hello</p>
         </div>
         <div className="learn-more">?</div>
       </div>
