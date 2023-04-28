@@ -6,8 +6,8 @@ function ReviewDashboard({ course }) {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    console.log(`QUERY http://127.0.0.1:8000/reviews/course/${course._id}`);
-    fetch(`http://127.0.0.1:8000/reviews/course/${course._id}`)
+
+    fetch(`https://rate-my-course-backend.onrender.com/reviews/course/${course._id}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);

@@ -13,7 +13,7 @@ function App() {
 
   // Fetches all courses from the database
   useEffect(() => {
-    fetch("http://localhost:8000/courses")
+    fetch("https://rate-my-course-backend.onrender.com/courses")
       .then((res) => res.json())
       .then((data) => {
         setCourses(data);

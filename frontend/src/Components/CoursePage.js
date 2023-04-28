@@ -92,7 +92,7 @@ function CoursePage({ course }) {
     // Checks for duplicated user review and returns a promise that resolves to a boolean
     const checkUserDuplicateReviews = async () => {
       // Obtain all the reviews written by the user
-      const response = await fetch(`http://127.0.0.1:8000/reviews/user/${googleId}`);
+      const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/user/${googleId}`);
       const allUserReviews = await response.json();
 
       return allUserReviews.some((review) => review.courseId === course._id);
@@ -100,7 +100,7 @@ function CoursePage({ course }) {
 
     // Submits a review to MongoDB and returns a promise that resolves to the response
     const submitReview = async () => {
-      const response = await fetch(`http://127.0.0.1:8000/reviews/`, {
+      const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
