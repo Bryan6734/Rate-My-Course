@@ -40,7 +40,7 @@ function LoginButton() {
   // Check if the user's email ends with @milton.edu. If so, check if the user is in mongoDB. If not, create a new user in mongoDB.
   async function findUserInMongoDB(user, accessToken) {
     try {
-      const response = await fetch("http://127.0.0.1:8000/users/googleId/" + user.googleId);
+      const response = await fetch("https://rate-my-course-backend.onrender.com/users/googleId/" + user.googleId);
 
       if (!user.email.endsWith("@milton.edu")) {
         alert("You must use a Milton email to login.");
@@ -82,7 +82,7 @@ function LoginButton() {
     console.log("posting user to mongoDB. NEW:")
     console.log(user)
 
-    await fetch("http://127.0.0.1:8000/users", {
+    await fetch("https://rate-my-course-backend.onrender.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

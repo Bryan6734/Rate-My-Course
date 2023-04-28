@@ -48,17 +48,17 @@ function UserProfile() {
 
     // API: user w/ googleId -> reviews -> courses
     const getUserReviews = async () => {
-      const userDBResponse = await fetch("http://127.0.0.1:8000/users/googleId/" + googleId);
+      const userDBResponse = await fetch("https://rate-my-course-backend.onrender.com/users/googleId/" + googleId);
       const userData = await userDBResponse.json();
       setUser(userData);
 
-      const reviewsDBResponse = await fetch("http://127.0.0.1:8000/reviews/user/" + userData.googleId);
+      const reviewsDBResponse = await fetch("https://rate-my-course-backend.onrender.com/reviews/user/" + userData.googleId);
 
       const reviewsData = await reviewsDBResponse.json();
       const courseIds = [...new Set(reviewsData.map((review) => review.courseId))];
 
 
-      const courseDBResponse = await fetch("http://127.0.0.1:8000/courses/ids/multiple?ids=" + courseIds.join(","))
+      const courseDBResponse = await fetch("https://rate-my-course-backend.onrender.com/courses/ids/multiple?ids=" + courseIds.join(","));
       const courseData = await courseDBResponse.json();
 
       let reviewsWithCourses = reviewsData.map((review) => {
