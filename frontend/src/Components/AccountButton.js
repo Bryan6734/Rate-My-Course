@@ -9,7 +9,7 @@ function AccountButton({ menuRender = false }) {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    setPicture(user.picture);
+
     if (user) {
       setPicture(user.picture);
       const profilePic = document.querySelector(".profile-pic");
