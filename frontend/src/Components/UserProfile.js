@@ -32,7 +32,7 @@ function UserProfile() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("user") === null) {
+    if (localStorage.getItem("user") === null || localStorage.getItem("user") === undefined || !localStorage.getItem("user")) {
       alert("Please login to view your profile.");
       navigate("/");
       return;
@@ -62,7 +62,6 @@ function UserProfile() {
       };
       getUserReviews();
     }
-
   }, [navigate]);
 
   let googleUser;
@@ -117,7 +116,7 @@ function UserProfile() {
     );
   };
 
-  return <>{user.firstName !== "" && userPage()}</>;
+  return <>{localStorage.getItem("user") === null ? null : userPage()}</>;
 }
 
 export default UserProfile;
