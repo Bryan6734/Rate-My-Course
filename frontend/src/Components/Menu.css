@@ -12,6 +12,7 @@ hr {
 .menu {
   position: fixed;
   right: 0;
+  top: 0;
 
   text-align: right;
   /* padding: 50px; */
