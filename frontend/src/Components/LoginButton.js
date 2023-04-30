@@ -33,6 +33,12 @@ function LoginButton() {
     });
     const googleUserData = await response.json();
 
+    if (!googleUserData.email.endsWith("@milton.edu")) {
+      alert("You must use a Milton email to login.");
+      console.log("User is not a Milton student.");
+      return null;
+    }
+
     return {
       googleId: googleUserData.id,
       firstName: googleUserData.given_name,
