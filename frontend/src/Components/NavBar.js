@@ -19,7 +19,7 @@ function NavBar() {
 
 
   return (
-    <>
+    <div className="nav-bar-container">
       <nav className="mini-nav-bar">
         <div className="mini-nav-links"></div>
       </nav>
@@ -44,7 +44,7 @@ function NavBar() {
       </nav>
 
       <Menu className="hide" ></Menu>
-    </>
+    </div>
   );
 }
 

@@ -27,7 +27,9 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar></NavBar>
+
+        <NavBar/>
+
 
       <Routes>
         <Route path="/about-us" element={<AboutUsPage />} />

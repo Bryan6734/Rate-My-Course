@@ -1,8 +1,18 @@
+.nav-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .mini-nav-bar {
   width: 100%;
-  min-height: 33px;
+  height: 33px;
+
+  margin-top: -2px;
   background-color: var(--primary-color);
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: var(--primary-color) 5px solid;
+
   z-index: 1;
 }
 
@@ -68,15 +78,12 @@
 
   /* create background color with slight transparency */
   background-color: rgba(0, 0, 0, 0.268);
-
 }
 
 .nav-bar .nav-links .profile-pic:hover {
   cursor: pointer;
   /* border: 3px dotted var(--primary-color); */
 }
-
-
 
 
 @media screen and (min-width: 730px) and (max-width: 850px) {
@@ -119,7 +126,7 @@
 }
 
 @media screen and (max-width: 730px) {
-  .nav-bar .nav-links :not(.open){
+  .nav-bar .nav-links :not(.open) {
     display: none;
   }
 
@@ -127,6 +134,12 @@
     display: block;
   }
 
+  .nav-bar .logo img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 450px) {
   .nav-bar .logo img {
     width: 250px;
   }
