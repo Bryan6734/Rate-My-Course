@@ -8,13 +8,7 @@ import ReviewCard from "./ReviewCard";
 function UserProfile() {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
-  const [user, setUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    graduationYear: "",
-    picture: "",
-  });
+  const [user, setUser] = useState(null);
 
   const [picture, setPicture] = useState("");
 
