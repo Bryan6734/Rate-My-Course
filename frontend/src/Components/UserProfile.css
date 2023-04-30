@@ -91,5 +91,62 @@
   color: var(--tertiary-color);
 }
 
+@media screen and (max-width: 730px){
+  .profile-card img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media screen and (max-width: 650px){
+  .profile-card img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .user-page .profile-card {
+    gap: 20px;
+
+  }
+
+  .profile-card .info h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-card .info p {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px){
+  .profile-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+
+  }
+
+  .user-page .profile-card {
+    gap: 10px;
+
+  }
+
+  .profile-card .info h2 {
+    font-size: 1.25rem;
+  }
+
+  .profile-card .info p {
+    font-size: 0.75rem;
+  }
+
+  .profile-card .info .buttons .btn {
+    font-size: 0.75rem;
+    padding: 5px 10px;
+  }
+
+  .profile-card {
+    max-width: 450px;
+    overflow-x: scroll;
+  }
+}
 
 
