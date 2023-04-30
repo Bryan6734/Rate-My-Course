@@ -36,33 +36,32 @@ function UserProfile() {
       alert("Please login to view your profile.");
       navigate("/");
       return;
-    } else {
-      const googleId = JSON.parse(localStorage.getItem("user")).googleId;
-
-      // API: user w/ googleId -> reviews -> courses
-      const getUserReviews = async () => {
-        const userDBResponse = await fetch("https://rate-my-course-backend.onrender.com/users/googleId/" + googleId);
-        const userData = await userDBResponse.json();
-        setUser(userData);
-
-        const reviewsDBResponse = await fetch("https://rate-my-course-backend.onrender.com/reviews/user/" + userData.googleId);
-
-        const reviewsData = await reviewsDBResponse.json();
-        const courseIds = [...new Set(reviewsData.map((review) => review.courseId))];
-
-        const courseDBResponse = await fetch("https://rate-my-course-backend.onrender.com/courses/ids/multiple?ids=" + courseIds.join(","));
-        const courseData = await courseDBResponse.json();
-
-        let reviewsWithCourses = reviewsData.map((review) => {
-          const course = courseData.find((course) => course._id === review.courseId);
-          return { ...review, course };
-        });
-
-        setReviews(reviewsWithCourses);
-      };
-      getUserReviews();
     }
-  }, [navigate]);
+    const googleId = JSON.parse(localStorage.getItem("user")).googleId;
+
+    // API: user w/ googleId -> reviews -> courses
+    const getUserReviews = async () => {
+      const userDBResponse = await fetch("https://rate-my-course-backend.onrender.com/users/googleId/" + googleId);
+      const userData = await userDBResponse.json();
+      setUser(userData);
+
+      const reviewsDBResponse = await fetch("https://rate-my-course-backend.onrender.com/reviews/user/" + userData.googleId);
+
+      const reviewsData = await reviewsDBResponse.json();
+      const courseIds = [...new Set(reviewsData.map((review) => review.courseId))];
+
+      const courseDBResponse = await fetch("https://rate-my-course-backend.onrender.com/courses/ids/multiple?ids=" + courseIds.join(","));
+      const courseData = await courseDBResponse.json();
+
+      let reviewsWithCourses = reviewsData.map((review) => {
+        const course = courseData.find((course) => course._id === review.courseId);
+        return { ...review, course };
+      });
+
+      setReviews(reviewsWithCourses);
+    };
+    getUserReviews();
+  }, [navigate, user]);
 
   let googleUser;
 
@@ -70,8 +69,6 @@ function UserProfile() {
     googleUser = JSON.parse(localStorage.getItem("user"));
     if (googleUser) {
       setPicture(googleUser.picture);
-      // const profilePic = document.querySelector(".profile-pic");
-      // profilePic.src = user.picture;
     }
   }, [googleUser]);
 
@@ -116,7 +113,8 @@ function UserProfile() {
     );
   };
 
-  return <>{localStorage.getItem("user") === null ? null : userPage()}</>;
+  return <div>{user ? userPage() : null}</div>;
+
 }
 
 export default UserProfile;

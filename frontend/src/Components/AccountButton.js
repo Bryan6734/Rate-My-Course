@@ -23,7 +23,7 @@ function AccountButton({ menuRender = false }) {
     <div className="logout-container">
       {menuRender ? (
         <button className="login-btn" onClick={() => navigate("/account")}>
-          Logout
+          Account
         </button>
       ) : (
           <img className="profile-pic" src={ picture } onClick={() => navigate("/account")}  alt="User" />
