@@ -1,5 +1,6 @@
 import React from "react";
 import miltonLogo from "../Assets/milton-logo-final.png";
+import ratemycourseLogo from "../Assets/ratemycourse-logo.png";
 import menuIcon from "../Assets/menu-icon.png";
 import Menu from "./Menu";
 import "./NavBar.css";
@@ -24,7 +25,7 @@ function NavBar() {
       </nav>
       <nav className="nav-bar">
         <div className="logo">
-          <img src={miltonLogo} alt="Milton Logo" />
+          <img src={ratemycourseLogo} alt="Milton Logo" />
         </div>
 
         <div className="nav-links">

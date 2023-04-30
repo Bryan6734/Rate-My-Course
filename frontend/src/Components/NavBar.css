@@ -79,7 +79,7 @@
 
 
 
-@media screen and (min-width: 760px) and (max-width: 955px) {
+@media screen and (min-width: 730px) and (max-width: 850px) {
   .nav-bar {
     padding: 0 10vw;
   }
@@ -118,7 +118,7 @@
   /* use clamp to adjust the size of the logo (image) */
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 730px) {
   .nav-bar .nav-links :not(.open){
     display: none;
   }
