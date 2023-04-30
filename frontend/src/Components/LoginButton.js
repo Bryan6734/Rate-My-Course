@@ -13,7 +13,12 @@ function LoginButton() {
       console.log("User:", googleUserData);
       console.log("MongoDB User:", mongoDBUser);
 
-      localStorage.setItem("user", JSON.stringify(mongoDBUser));
+      if (mongoDBUser) {
+        localStorage.setItem("user", JSON.stringify(mongoDBUser));
+      } else {
+        localStorage.removeItem("user");
+      }
+      
       window.location.reload();
     },
     onFailure: (response) => console.error(response),
@@ -52,6 +57,7 @@ function LoginButton() {
         if (response.status === 404) {
           console.log("User not found in MongoDB. Creating new user.");
           await postUserToMongoDB(user, accessToken);
+          
 
         // If the response goes through, retrieve the user data.
         } else if (response.status === 200) {
