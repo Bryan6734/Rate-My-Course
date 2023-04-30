@@ -32,11 +32,10 @@ function NavBar() {
           <Link to="/courses">Courses</Link>
           <Link to="/about-us">About</Link>
 
-          {localStorage.getItem("user") ? (
-
-            <AccountButton></AccountButton>
-          ) : (
+          {localStorage.getItem("user") === null ? (
             <LoginButton></LoginButton>
+            ) : (
+            <AccountButton></AccountButton>
           )}
 
           <img className="open" src={menuIcon} onClick={openMenu} alt="" />

@@ -12,8 +12,8 @@ function AccountButton({ menuRender = false }) {
 
     if (user) {
       setPicture(user.picture);
-      const profilePic = document.querySelector(".profile-pic");
-      profilePic.src = user.picture;
+      // const profilePic = document.querySelector(".profile-pic");
+      // profilePic.src = user.picture;
 
     }
   }, [])
