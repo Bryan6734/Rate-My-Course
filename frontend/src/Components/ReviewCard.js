@@ -13,11 +13,12 @@ function ReviewCard({ review, details }) {
   const idToDate = (id) => {
     const date = new Date(parseInt(id.substring(0, 8), 16) * 1000);
 
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    const year = date.getFullYear();
-
-    return month + "/" + day + "/" + year;
+    // return date but make the day "th"
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
   }
 
   return (
@@ -28,6 +29,7 @@ function ReviewCard({ review, details }) {
           <p className="details">{
             idToDate(review._id)
           }</p>
+          {review.course ? <p className="details">{review.course.name}</p> : null}
         </div>
         <div className="learn-more">?</div>
       </div>
