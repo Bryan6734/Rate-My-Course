@@ -20,8 +20,6 @@ function CoursePage({ course }) {
     const desc = document.querySelector(".desc");
     const descContents = desc.querySelectorAll("p");
 
-
-
     desc.classList.toggle("animate-in");
 
     // wait for animation to finish
@@ -85,7 +83,6 @@ function CoursePage({ course }) {
       return;
     }
 
-
     const googleId = JSON.parse(localStorage.getItem("user")).googleId;
     const reviewData = JSON.stringify({ ...inputs, courseId: course._id, googleId: googleId });
 
@@ -96,6 +93,16 @@ function CoursePage({ course }) {
       const allUserReviews = await response.json();
 
       return allUserReviews.some((review) => review.courseId === course._id);
+    };
+
+    const checkReviewProfanity = async (allReviewInfo) => {
+      const list_of_text = allReviewInfo.join(" ");
+      const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${list_of_text}`);
+      const data = await response.text();
+
+
+
+      return data === "true";
     };
 
     // Submits a review to MongoDB and returns a promise that resolves to the response
@@ -124,7 +131,14 @@ function CoursePage({ course }) {
       if (result) {
         alert("You have already submitted a review for this course");
       } else {
-        submitReview();
+        const text_to_check = [inputs.title, inputs.description];
+        checkReviewProfanity(text_to_check).then((result) => {
+          if (result) {
+            alert("Your review contains profanity. Please remove it and try again.");
+          } else {
+            submitReview();
+          }
+        });
       }
     });
   };
