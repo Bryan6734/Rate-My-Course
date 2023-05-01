@@ -100,8 +100,6 @@ function CoursePage({ course }) {
       const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${list_of_text}`);
       const data = await response.text();
 
-
-
       return data === "true";
     };
 
@@ -167,27 +165,44 @@ function CoursePage({ course }) {
 
             <div className="sliders">
               <div className="slider">
-                <label htmlFor="content">Content</label>
+                <label htmlFor="content">Engagement</label>
+                <div className="label-desc">
+                  <p>Low</p>
+                  <p>High</p>
+                </div>
 
                 <input type="range" name="content" id="content" value={inputs.content || ""} onChange={handleChange} />
               </div>
 
               <div className="slider">
                 <label htmlFor="difficulty">Difficulty</label>
+                <div className="label-desc">
+                  <p>Easy</p>
+                  <p>Hard</p>
+                </div>
                 <input type="range" name="difficulty" id="difficulty" value={inputs.difficulty || ""} onChange={handleChange} />
               </div>
 
               <div className="slider">
                 <label htmlFor="workload">Workload</label>
+                <div className="label-desc">
+                  <p>Light</p>
+                  <p>Heavy</p>
+                </div>
                 <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} />
               </div>
 
               <div className="slider">
                 <label htmlFor="pacing">Pacing</label>
+                <div className="label-desc">
+                  <p>Slow</p>
+                  <p>Fast</p>
+                </div>
+
                 <input type="range" name="pacing" id="pacing" value={inputs.pacing || ""} onChange={handleChange} />
               </div>
 
-              <div className="slider">
+              {/* <div className="slider">
                 <label htmlFor="clarity">Clarity</label>
                 <input type="range" name="clarity" id="clarity" value={inputs.clarity || ""} onChange={handleChange} />
               </div>
@@ -195,8 +210,20 @@ function CoursePage({ course }) {
               <div className="slider">
                 <label htmlFor="organization">Organization</label>
                 <input type="range" name="organization" id="organization" value={inputs.organization || ""} onChange={handleChange} />
-              </div>
+              </div> */}
             </div>
+
+            <textarea
+              name="assignment"
+              id="assignment"
+              placeholder="What do assignments look like? What was your favorite assignment?"
+              maxLength={maxCharCount}
+              value={inputs.assignment || ""}
+              onChange={(e) => {
+                handleChange(e);
+                setCharCount(e.target.value.length);
+              }}
+            ></textarea>
 
             <textarea
               name="description"
