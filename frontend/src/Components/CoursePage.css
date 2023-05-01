@@ -91,7 +91,7 @@
 
 
 .course-page .dropdowns .animate-in {
-  max-height: 600px;
+  max-height: 1000px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -224,6 +224,18 @@
   font-size: 0.75rem;
   text-align: right;
   color: #a0a0a0;
+}
+
+.all-text-inputs {
+  display: flex;
+
+
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-area-container {
+  flex: 1;
 }
 
 .course-page .reviews {

@@ -13,8 +13,10 @@ function CoursePage({ course }) {
     organization: 50,
     description: "",
   });
-  const [charCount, setCharCount] = useState(0);
-  const maxCharCount = 300;
+
+  const [recommendationCharCount, setRecommendationCharCount] = useState(0);
+  const [assignmentCharCount, setAssignmentCharCount] = useState(0);
+  const [reviewCharCount, setReviewCharCount] = useState(0);
 
   const showDescription = () => {
     const desc = document.querySelector(".desc");
@@ -62,8 +64,13 @@ function CoursePage({ course }) {
   };
 
   const handleChange = (e) => {
+    
     const name = e.target.name;
     const value = e.target.value;
+    
+    if (value === "\n" || value === "\r" || value === "\r\n") {
+      return;
+    }
 
     setInputs({
       ...inputs,
@@ -213,29 +220,59 @@ function CoursePage({ course }) {
               </div> */}
             </div>
 
-            <textarea
-              name="assignment"
-              id="assignment"
-              placeholder="What do assignments look like? What was your favorite assignment?"
-              maxLength={maxCharCount}
-              value={inputs.assignment || ""}
-              onChange={(e) => {
-                handleChange(e);
-                setCharCount(e.target.value.length);
-              }}
-            ></textarea>
+            <div className="all-text-inputs">
+              <div className="text-area-container">
+                <textarea
+                  name="assignment"
+                  id="assignment"
+                  placeholder="What do assignments look like? What was your favorite assignment?"
+                  maxLength={200}
+                  value={inputs.assignment || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setAssignmentCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+                <p className="char-count">
+                  {assignmentCharCount}/{200}
+                </p>
+              </div>
 
-            <textarea
-              name="description"
-              id="description"
-              placeholder="Write a little bit about your experience in this course."
-              maxLength={maxCharCount}
-              value={inputs.description || ""}
-              onChange={(e) => {
-                handleChange(e);
-                setCharCount(e.target.value.length);
-              }}
-            ></textarea>
+              <div className="text-area-container">
+                <textarea
+                  name="recommendation"
+                  id="recommendation"
+                  placeholder="Who would you recommend this course to?"
+                  maxLength={200}
+                  value={inputs.recommendation || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setRecommendationCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+
+                <p className="char-count">
+                  {recommendationCharCount}/{200}
+                </p>
+              </div>
+
+              <div className="text-area-container">
+                <textarea
+                  name="description"
+                  id="description"
+                  placeholder="Write a little bit about your experience in this course."
+                  maxLength={300}
+                  value={inputs.description || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setReviewCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+                <p className="char-count">
+                  {reviewCharCount}/{300}
+                </p>
+              </div>
+            </div>
 
             <div className="review-final-row">
               <div className="buttons">
@@ -254,16 +291,14 @@ function CoursePage({ course }) {
                       organization: 50,
                       description: "",
                     });
-                    setCharCount(0);
+                    setAssignmentCharCount(0);
+                    setRecommendationCharCount(0);
+                    setReviewCharCount(0);
                   }}
                 >
                   Reset
                 </button>
               </div>
-
-              <p className="char-count">
-                {charCount}/{maxCharCount}
-              </p>
             </div>
           </form>
         </div>
