@@ -100,8 +100,8 @@ function CoursePage({ course }) {
       const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${list_of_text}`);
       const data = await response.text();
 
-      console.log(data);
-      console.log(data === "true")
+
+
       return data === "true";
     };
 
