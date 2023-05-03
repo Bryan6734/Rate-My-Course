@@ -1,10 +1,36 @@
 .review-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 20px 30px;
   transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  width: 100%;
+
+  justify-content: space-between;
+}
+
+.review-card .review-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-card .review-text .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  overflow-wrap: anywhere;
+  width: 100%;
+}
+
+.review-card .review-text .info .text-review {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-wrap: anywhere;
+  width: 100%;
 }
 
 .header-container {
@@ -32,6 +58,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  overflow-wrap: anywhere;
 }
 
 .review-card .header-container .title .details {
@@ -56,7 +83,7 @@
 
 .criteria {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 10px;
 }
@@ -72,6 +99,9 @@
   flex-direction: row;
   gap: 5px;
   align-items: center;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(99, 99, 99, 0.12);
 }
 
 .criterion .bar .bar-fill {
@@ -81,9 +111,13 @@
   filter: opacity(0.8);
 }
 
-@media screen and (max-width: 925px) {
-  .criteria {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
+.label-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+.label-desc .label {
+  font-size: 0.8rem;
+}
+

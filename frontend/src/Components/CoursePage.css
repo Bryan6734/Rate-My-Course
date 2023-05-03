@@ -177,7 +177,11 @@
 
 }
 
-
+.review-form form .all-text-areas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
 .review-form form textarea {
   font-size: 1.25rem;
@@ -227,6 +231,7 @@
   font-size: 0.75rem;
   text-align: right;
   color: #a0a0a0;
+
 }
 
 .text-area-container {
