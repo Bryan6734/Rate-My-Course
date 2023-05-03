@@ -11,10 +11,14 @@ function CoursePage({ course }) {
     pacing: 50,
     clarity: 50,
     organization: 50,
+    assignmentReview: "",
+    recommendationReview: "",
     description: "",
   });
-  const [charCount, setCharCount] = useState(0);
-  const maxCharCount = 300;
+
+  const [recommendationCharCount, setRecommendationCharCount] = useState(0);
+  const [assignmentCharCount, setAssignmentCharCount] = useState(0);
+  const [reviewCharCount, setReviewCharCount] = useState(0);
 
   const showDescription = () => {
     const desc = document.querySelector(".desc");
@@ -65,6 +69,10 @@ function CoursePage({ course }) {
     const name = e.target.name;
     const value = e.target.value;
 
+    if (value === "\n" || value === "\r" || value === "\r\n") {
+      return;
+    }
+
     setInputs({
       ...inputs,
       [name]: value,
@@ -78,7 +86,9 @@ function CoursePage({ course }) {
       return;
     }
 
-    if (Object.keys(inputs).length !== 8 || inputs.title === "" || inputs.description === "") {
+    console.log(inputs);
+
+    if (inputs.title == "" || inputs.assignmentReview == "" || inputs.recommendationReview == "" || inputs.description == "") {
       alert("Please fill out all fields");
       return;
     }
@@ -99,8 +109,6 @@ function CoursePage({ course }) {
       const list_of_text = allReviewInfo.join(" ");
       const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${list_of_text}`);
       const data = await response.text();
-
-
 
       return data === "true";
     };
@@ -131,7 +139,7 @@ function CoursePage({ course }) {
       if (result) {
         alert("You have already submitted a review for this course");
       } else {
-        const text_to_check = [inputs.title, inputs.description];
+        const text_to_check = [inputs.title, inputs.description, inputs.assignmentReview, inputs.recommendationReview];
         checkReviewProfanity(text_to_check).then((result) => {
           if (result) {
             alert("Your review contains profanity. Please remove it and try again.");
@@ -163,31 +171,54 @@ function CoursePage({ course }) {
           <h2 onClick={() => showReviewForm()}>Submit Your Review</h2>
 
           <form onSubmit={handleSubmit} className="review-form-hidden">
-            <input type="text" name="title" id="title" value={inputs.title || ""} onChange={handleChange} placeholder="Title" />
+            <input type="text" maxLength={50} name="title" id="title" value={inputs.title || ""} onChange={handleChange} placeholder="Title" />
 
             <div className="sliders">
               <div className="slider">
-                <label htmlFor="content">Content</label>
+                <label htmlFor="content">Engagement</label>
+                <div className="label-desc">
+                  <p>Low</p>
+                  <p>High</p>
+                </div>
 
                 <input type="range" name="content" id="content" value={inputs.content || ""} onChange={handleChange} />
               </div>
 
               <div className="slider">
                 <label htmlFor="difficulty">Difficulty</label>
+                <div className="label-desc">
+                  <p>Easy</p>
+                  <p>Hard</p>
+                </div>
                 <input type="range" name="difficulty" id="difficulty" value={inputs.difficulty || ""} onChange={handleChange} />
               </div>
 
               <div className="slider">
                 <label htmlFor="workload">Workload</label>
-                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} />
+
+                <div className="label-desc">
+                  {inputs.workload < 60 && <p>{inputs.workload + " mins"}</p>}
+                  {inputs.workload == 60 && <p>{inputs.workload / 60 + " hour"}</p>}
+                  {inputs.workload > 60 && <p>{Math.floor(inputs.workload / 60) + " hours " + (inputs.workload - 60) + " mins"}</p>}
+                </div>
+
+                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} step={10}
+
+                min={0} max={100}
+                />
               </div>
 
               <div className="slider">
                 <label htmlFor="pacing">Pacing</label>
+                <div className="label-desc">
+                  <p>Slow</p>
+                  <p>Fast</p>
+                </div>
+
                 <input type="range" name="pacing" id="pacing" value={inputs.pacing || ""} onChange={handleChange} />
               </div>
 
-              <div className="slider">
+              {/* <div className="slider">
                 <label htmlFor="clarity">Clarity</label>
                 <input type="range" name="clarity" id="clarity" value={inputs.clarity || ""} onChange={handleChange} />
               </div>
@@ -195,20 +226,60 @@ function CoursePage({ course }) {
               <div className="slider">
                 <label htmlFor="organization">Organization</label>
                 <input type="range" name="organization" id="organization" value={inputs.organization || ""} onChange={handleChange} />
-              </div>
+              </div> */}
             </div>
 
-            <textarea
-              name="description"
-              id="description"
-              placeholder="Write a little bit about your experience in this course."
-              maxLength={maxCharCount}
-              value={inputs.description || ""}
-              onChange={(e) => {
-                handleChange(e);
-                setCharCount(e.target.value.length);
-              }}
-            ></textarea>
+            <div className="text-area-container">
+              <textarea
+                name="recommendationReview"
+                id="recommendation"
+                placeholder="What did a typical day in class look like?"
+                maxLength={200}
+                value={inputs.recommendationReview || ""}
+                onChange={(e) => {
+                  handleChange(e);
+                  setRecommendationCharCount(e.target.value.length);
+                }}
+              ></textarea>
+
+              <p className="char-count">
+                {recommendationCharCount}/{200}
+              </p>
+            </div>
+            <div className="text-area-container">
+              <div className="text-area-container">
+                <textarea
+                  name="assignmentReview"
+                  id="assignment"
+                  placeholder="What was your favorite assignment? What did the work consist of?"
+                  maxLength={200}
+                  value={inputs.assignmentReview || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setAssignmentCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+                <p className="char-count">
+                  {assignmentCharCount}/{200}
+                </p>
+              </div>
+            </div>
+            <div className="text-area-container">
+              <textarea
+                name="description"
+                id="description"
+                placeholder={"Why should someone choose to take " + course.name + "? "}
+                maxLength={300}
+                value={inputs.description || ""}
+                onChange={(e) => {
+                  handleChange(e);
+                  setReviewCharCount(e.target.value.length);
+                }}
+              ></textarea>
+              <p className="char-count">
+                {reviewCharCount}/{300}
+              </p>
+            </div>
 
             <div className="review-final-row">
               <div className="buttons">
@@ -225,18 +296,18 @@ function CoursePage({ course }) {
                       pacing: 50,
                       clarity: 50,
                       organization: 50,
+                      recommendationReview: "",
+                      assignmentReview: "",
                       description: "",
                     });
-                    setCharCount(0);
+                    setAssignmentCharCount(0);
+                    setRecommendationCharCount(0);
+                    setReviewCharCount(0);
                   }}
                 >
                   Reset
                 </button>
               </div>
-
-              <p className="char-count">
-                {charCount}/{maxCharCount}
-              </p>
             </div>
           </form>
         </div>
