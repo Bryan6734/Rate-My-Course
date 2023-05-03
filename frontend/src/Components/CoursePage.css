@@ -91,7 +91,7 @@
 
 
 .course-page .dropdowns .animate-in {
-  max-height: 600px;
+  max-height: 1000px;
   transition: all 0.5s ease-in-out;
 }
 
@@ -128,7 +128,7 @@
 
 .course-page .dropdowns .review-form .sliders {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 
   gap: 10px;
@@ -142,6 +142,17 @@
   font-weight: 600;
   gap: 7.5px;
 }
+
+.sliders .slider .label-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sliders .slider .label-desc p {
+  font-size: 0.8rem;
+}
+
 
 .sliders .slider input[type="range"] {
   -webkit-appearance: none;
@@ -163,9 +174,16 @@
   border-radius: 50%;
   background: var(--primary-color);
   cursor: pointer;
+
 }
 
-.review-form form #description {
+.review-form form .all-text-areas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-form form textarea {
   font-size: 1.25rem;
   border: 1px solid #e0e0e0;
   border-radius: 5px;
@@ -198,6 +216,7 @@
   padding: 15px 100px;
   font-size: 1rem;
   font-weight: 600;
+  color: black;
 
   transition: background-color 0.2s ease-in-out;
 }
@@ -212,6 +231,13 @@
   font-size: 0.75rem;
   text-align: right;
   color: #a0a0a0;
+
+}
+
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .course-page .reviews {
