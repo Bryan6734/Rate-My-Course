@@ -230,23 +230,6 @@ function CoursePage({ course }) {
             </div>
 
             <div className="text-area-container">
-              <textarea
-                name="recommendationReview"
-                id="recommendation"
-                placeholder="What did a typical day in class look like?"
-                maxLength={200}
-                value={inputs.recommendationReview || ""}
-                onChange={(e) => {
-                  handleChange(e);
-                  setRecommendationCharCount(e.target.value.length);
-                }}
-              ></textarea>
-
-              <p className="char-count">
-                {recommendationCharCount}/{200}
-              </p>
-            </div>
-            <div className="text-area-container">
               <div className="text-area-container">
                 <textarea
                   name="assignmentReview"
@@ -263,6 +246,23 @@ function CoursePage({ course }) {
                   {assignmentCharCount}/{200}
                 </p>
               </div>
+            </div>
+            <div className="text-area-container">
+              <textarea
+                name="recommendationReview"
+                id="recommendation"
+                placeholder="What did a typical day in class look like?"
+                maxLength={200}
+                value={inputs.recommendationReview || ""}
+                onChange={(e) => {
+                  handleChange(e);
+                  setRecommendationCharCount(e.target.value.length);
+                }}
+              ></textarea>
+
+              <p className="char-count">
+                {recommendationCharCount}/{200}
+              </p>
             </div>
             <div className="text-area-container">
               <textarea
