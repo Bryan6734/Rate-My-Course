@@ -5,8 +5,6 @@ function ReviewCard({ review, details }) {
   const criteria = ["content", "difficulty", "workload", "pacing"];
 
   const handleClick = () => {
-    console.log("Clicked card");
-    console.log(review);
   };
 
   const idToDate = (id) => {

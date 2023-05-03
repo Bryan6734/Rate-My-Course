@@ -202,10 +202,7 @@ function CoursePage({ course }) {
                   {inputs.workload > 60 && <p>{Math.floor(inputs.workload / 60) + " hours " + (inputs.workload - 60) + " mins"}</p>}
                 </div>
 
-                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} step={10}
-
-                min={0} max={100}
-                />
+                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} step={10} min={0} max={100} />
               </div>
 
               <div className="slider">
@@ -229,7 +226,7 @@ function CoursePage({ course }) {
               </div> */}
             </div>
 
-            <div className="text-area-container">
+            <div className="all-text-areas">
               <div className="text-area-container">
                 <textarea
                   name="assignmentReview"
@@ -246,39 +243,40 @@ function CoursePage({ course }) {
                   {assignmentCharCount}/{200}
                 </p>
               </div>
-            </div>
-            <div className="text-area-container">
-              <textarea
-                name="recommendationReview"
-                id="recommendation"
-                placeholder="What did a typical day in class look like?"
-                maxLength={200}
-                value={inputs.recommendationReview || ""}
-                onChange={(e) => {
-                  handleChange(e);
-                  setRecommendationCharCount(e.target.value.length);
-                }}
-              ></textarea>
 
-              <p className="char-count">
-                {recommendationCharCount}/{200}
-              </p>
-            </div>
-            <div className="text-area-container">
-              <textarea
-                name="description"
-                id="description"
-                placeholder={"Why should someone choose to take " + course.name + "? "}
-                maxLength={300}
-                value={inputs.description || ""}
-                onChange={(e) => {
-                  handleChange(e);
-                  setReviewCharCount(e.target.value.length);
-                }}
-              ></textarea>
-              <p className="char-count">
-                {reviewCharCount}/{300}
-              </p>
+              <div className="text-area-container">
+                <textarea
+                  name="recommendationReview"
+                  id="recommendation"
+                  placeholder="What did a typical day in class look like?"
+                  maxLength={200}
+                  value={inputs.recommendationReview || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setRecommendationCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+
+                <p className="char-count">
+                  {recommendationCharCount}/{200}
+                </p>
+              </div>
+              <div className="text-area-container">
+                <textarea
+                  name="description"
+                  id="description"
+                  placeholder={"Why should someone choose to take " + course.name + "? "}
+                  maxLength={300}
+                  value={inputs.description || ""}
+                  onChange={(e) => {
+                    handleChange(e);
+                    setReviewCharCount(e.target.value.length);
+                  }}
+                ></textarea>
+                <p className="char-count">
+                  {reviewCharCount}/{300}
+                </p>
+              </div>
             </div>
 
             <div className="review-final-row">
