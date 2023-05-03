@@ -30,6 +30,7 @@
 .nav-bar .logo img {
   height: 100%;
   object-fit: contain;
+  cursor: pointer;
 }
 
 .nav-bar .nav-links {

@@ -6,9 +6,11 @@ import Menu from "./Menu";
 import "./NavBar.css";
 import LoginButton from "./LoginButton";
 import AccountButton from "./AccountButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 function NavBar() {
+  const navigate = useNavigate();
 
   function openMenu() {
     document.querySelector(".menu").classList.remove("hide");
@@ -17,6 +19,9 @@ function NavBar() {
 
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const handleLogoClick = () => {
+    navigate("/");
+  }
 
   return (
     <div className="nav-bar-container">
@@ -25,7 +30,7 @@ function NavBar() {
       </nav>
       <nav className="nav-bar">
         <div className="logo">
-          <img src={ratemycourseLogo} alt="Milton Logo" />
+          <img src={ratemycourseLogo} onClick={handleLogoClick} alt="Milton Logo" />
         </div>
 
         <div className="nav-links">
