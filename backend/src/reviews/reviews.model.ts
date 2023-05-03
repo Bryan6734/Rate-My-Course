@@ -41,12 +41,18 @@ export class Review {
   pacing: number;
 
   // How clear was the instructor of this course?
-  @Prop({ required: true })
+  @Prop()
   clarity: number;
 
   // How organized was the content and/or teacher?
-  @Prop({ required: true })
+  @Prop()
   organization: number;
+
+  @Prop()
+  assignmentReview: string;
+
+  @Prop()
+  recommendationReview: string;
 
   // Please provide any additional comments about the course.
   @Prop()
