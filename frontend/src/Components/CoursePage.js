@@ -11,6 +11,8 @@ function CoursePage({ course }) {
     pacing: 50,
     clarity: 50,
     organization: 50,
+    assignmentReview: "",
+    recommendationReview: "",
     description: "",
   });
 
@@ -64,10 +66,9 @@ function CoursePage({ course }) {
   };
 
   const handleChange = (e) => {
-    
     const name = e.target.name;
     const value = e.target.value;
-    
+
     if (value === "\n" || value === "\r" || value === "\r\n") {
       return;
     }
@@ -85,7 +86,9 @@ function CoursePage({ course }) {
       return;
     }
 
-    if (Object.keys(inputs).length !== 8 || inputs.title === "" || inputs.description === "") {
+    console.log(inputs);
+
+    if (inputs.title == "" || inputs.assignmentReview == "" || inputs.recommendationReview == "" || inputs.description == "") {
       alert("Please fill out all fields");
       return;
     }
@@ -136,7 +139,7 @@ function CoursePage({ course }) {
       if (result) {
         alert("You have already submitted a review for this course");
       } else {
-        const text_to_check = [inputs.title, inputs.description];
+        const text_to_check = [inputs.title, inputs.description, inputs.assignmentReview, inputs.recommendationReview];
         checkReviewProfanity(text_to_check).then((result) => {
           if (result) {
             alert("Your review contains profanity. Please remove it and try again.");
@@ -168,7 +171,7 @@ function CoursePage({ course }) {
           <h2 onClick={() => showReviewForm()}>Submit Your Review</h2>
 
           <form onSubmit={handleSubmit} className="review-form-hidden">
-            <input type="text" name="title" id="title" value={inputs.title || ""} onChange={handleChange} placeholder="Title" />
+            <input type="text" maxLength={50} name="title" id="title" value={inputs.title || ""} onChange={handleChange} placeholder="Title" />
 
             <div className="sliders">
               <div className="slider">
@@ -192,11 +195,17 @@ function CoursePage({ course }) {
 
               <div className="slider">
                 <label htmlFor="workload">Workload</label>
+
                 <div className="label-desc">
-                  <p>Light</p>
-                  <p>Heavy</p>
+                  {inputs.workload < 60 && <p>{inputs.workload + " mins"}</p>}
+                  {inputs.workload == 60 && <p>{inputs.workload / 60 + " hour"}</p>}
+                  {inputs.workload > 60 && <p>{Math.floor(inputs.workload / 60) + " hours " + (inputs.workload - 60) + " mins"}</p>}
                 </div>
-                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} />
+
+                <input type="range" name="workload" id="workload" value={inputs.workload || ""} onChange={handleChange} step={10}
+
+                min={0} max={100}
+                />
               </div>
 
               <div className="slider">
@@ -220,14 +229,31 @@ function CoursePage({ course }) {
               </div> */}
             </div>
 
-            <div className="all-text-inputs">
+            <div className="text-area-container">
+              <textarea
+                name="recommendationReview"
+                id="recommendation"
+                placeholder="What did a typical day in class look like?"
+                maxLength={200}
+                value={inputs.recommendationReview || ""}
+                onChange={(e) => {
+                  handleChange(e);
+                  setRecommendationCharCount(e.target.value.length);
+                }}
+              ></textarea>
+
+              <p className="char-count">
+                {recommendationCharCount}/{200}
+              </p>
+            </div>
+            <div className="text-area-container">
               <div className="text-area-container">
                 <textarea
-                  name="assignment"
+                  name="assignmentReview"
                   id="assignment"
-                  placeholder="What do assignments look like? What was your favorite assignment?"
+                  placeholder="What was your favorite assignment? What did the work consist of?"
                   maxLength={200}
-                  value={inputs.assignment || ""}
+                  value={inputs.assignmentReview || ""}
                   onChange={(e) => {
                     handleChange(e);
                     setAssignmentCharCount(e.target.value.length);
@@ -237,41 +263,22 @@ function CoursePage({ course }) {
                   {assignmentCharCount}/{200}
                 </p>
               </div>
-
-              <div className="text-area-container">
-                <textarea
-                  name="recommendation"
-                  id="recommendation"
-                  placeholder="Who would you recommend this course to?"
-                  maxLength={200}
-                  value={inputs.recommendation || ""}
-                  onChange={(e) => {
-                    handleChange(e);
-                    setRecommendationCharCount(e.target.value.length);
-                  }}
-                ></textarea>
-
-                <p className="char-count">
-                  {recommendationCharCount}/{200}
-                </p>
-              </div>
-
-              <div className="text-area-container">
-                <textarea
-                  name="description"
-                  id="description"
-                  placeholder="Write a little bit about your experience in this course."
-                  maxLength={300}
-                  value={inputs.description || ""}
-                  onChange={(e) => {
-                    handleChange(e);
-                    setReviewCharCount(e.target.value.length);
-                  }}
-                ></textarea>
-                <p className="char-count">
-                  {reviewCharCount}/{300}
-                </p>
-              </div>
+            </div>
+            <div className="text-area-container">
+              <textarea
+                name="description"
+                id="description"
+                placeholder={"Why should someone choose to take " + course.name + "? "}
+                maxLength={300}
+                value={inputs.description || ""}
+                onChange={(e) => {
+                  handleChange(e);
+                  setReviewCharCount(e.target.value.length);
+                }}
+              ></textarea>
+              <p className="char-count">
+                {reviewCharCount}/{300}
+              </p>
             </div>
 
             <div className="review-final-row">
@@ -289,6 +296,8 @@ function CoursePage({ course }) {
                       pacing: 50,
                       clarity: 50,
                       organization: 50,
+                      recommendationReview: "",
+                      assignmentReview: "",
                       description: "",
                     });
                     setAssignmentCharCount(0);

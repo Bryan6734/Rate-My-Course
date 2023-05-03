@@ -174,7 +174,10 @@
   border-radius: 50%;
   background: var(--primary-color);
   cursor: pointer;
+
 }
+
+
 
 .review-form form textarea {
   font-size: 1.25rem;
@@ -209,7 +212,7 @@
   padding: 15px 100px;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--primary-color);
+  color: black;
 
   transition: background-color 0.2s ease-in-out;
 }
@@ -226,16 +229,10 @@
   color: #a0a0a0;
 }
 
-.all-text-inputs {
-  display: flex;
-
-
-  flex-direction: column;
-  gap: 10px;
-}
-
 .text-area-container {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .course-page .reviews {
