@@ -100,7 +100,7 @@
   align-items: center;
   border: none;
   border-radius: 5px;
-  background-color:rgba(99, 99, 99, 0.12);
+  background-color: rgba(99, 99, 99, 0.12);
 }
 
 .criterion .bar .bar-fill {
@@ -110,9 +110,13 @@
   filter: opacity(0.8);
 }
 
-@media screen and (max-width: 925px) {
-  .criteria {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
+.label-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+.label-desc .label {
+  font-size: 0.8rem;
+}
+
