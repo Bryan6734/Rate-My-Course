@@ -62,7 +62,7 @@ function ReviewCard({ review, details }) {
           </div>
 
           <div className="bar">
-            <div className="bar-fill" style={{ width: `${review["engagement"]}%` }}></div>
+            <div className="bar-fill" style={{ width: `${review["content"]}%` }}></div>
           </div>
         </div>
         <div className="criterion">
