@@ -30,7 +30,7 @@ function NavBar() {
       </nav>
       <nav className="nav-bar">
         <div className="logo">
-          <img src={ratemycourseLogo} onClick={handleLogoClick} alt="Milton Logo" />
+        <img src={ratemycourseLogo} onClick={handleLogoClick} alt="Milton Logo" priority="high" />
         </div>
 
         <div className="nav-links">
