@@ -114,7 +114,6 @@ function CoursePage({ course }) {
       return data === "true";
     };
 
-
     checkUserDuplicateReviews().then((result) => {
       if (result) {
         alert("You have already submitted a review for this course");
@@ -133,10 +132,6 @@ function CoursePage({ course }) {
             });
 
             confirmation.style.display = "flex";
-
-
-
-            
           }
         });
       }
@@ -145,7 +140,9 @@ function CoursePage({ course }) {
 
   return (
     <div className="course-page">
-      <ReviewRulesCard data={inputs} courseId={course._id} googleId={JSON.parse(localStorage.getItem("user")).googleId} />
+      {JSON.parse(localStorage.getItem("user")) !== null && (
+        <ReviewRulesCard data={inputs} courseId={course._id} googleId={JSON.parse(localStorage.getItem("user")).googleId} />
+      )}
       <hr />
       <h1 className="name">{course.name}</h1>
 
@@ -294,8 +291,6 @@ function CoursePage({ course }) {
                     setAssignmentCharCount(0);
                     setRecommendationCharCount(0);
                     setReviewCharCount(0);
-
-          
                   }}
                 >
                   Reset
