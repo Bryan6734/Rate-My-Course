@@ -2,7 +2,7 @@ import React from "react";
 import "./ReviewRulesCard.css";
 import close from "../Assets/menu-close-black.png";
 
-function ReviewRulesCard() {
+function ReviewRulesCard({ data, courseId, googleId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -11,9 +11,37 @@ function ReviewRulesCard() {
     const guideline_3 = document.getElementById("guideline-3").checked;
 
     if (guideline_1 && guideline_2 && guideline_3) {
-      console.log("all checked");
+      postReviewToMongoDB();
     } else {
       console.log("not all checked");
+    }
+  };
+
+  const postReviewToMongoDB = async () => {
+
+    console.log("Our data to post:")
+    console.log(data);
+
+
+    console.log(typeof data);
+
+    const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, courseId: courseId, googleId: googleId })
+    });
+
+    // const data = await response.json();
+
+    console.log(response.status);
+    console.log(response.statusText);
+
+    if (response.ok) {
+      alert("Review submitted successfully");
+    } else {
+      alert("There was an error submitting your review");
     }
   };
 

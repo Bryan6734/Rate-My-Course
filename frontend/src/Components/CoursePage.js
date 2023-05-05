@@ -114,27 +114,6 @@ function CoursePage({ course }) {
       return data === "true";
     };
 
-    // Submits a review to MongoDB and returns a promise that resolves to the response
-    const submitReview = async () => {
-      const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: reviewData,
-      });
-
-      const data = await response.json();
-
-      console.log(response.status);
-      console.log(response.statusText);
-
-      if (response.ok) {
-        alert("Review submitted successfully");
-      } else {
-        alert("There was an error submitting your review");
-      }
-    };
 
     checkUserDuplicateReviews().then((result) => {
       if (result) {
@@ -145,7 +124,19 @@ function CoursePage({ course }) {
           if (result) {
             alert("Your review contains profanity. Please remove it and try again.");
           } else {
-            submitReview();
+            const confirmation = document.getElementById("review-rules-card");
+
+            const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)");
+
+            background.forEach((element) => {
+              element.style.filter = "blur(5px)";
+            });
+
+            confirmation.style.display = "flex";
+
+
+
+            
           }
         });
       }
@@ -154,7 +145,7 @@ function CoursePage({ course }) {
 
   return (
     <div className="course-page">
-      <ReviewRulesCard/>
+      <ReviewRulesCard data={inputs} courseId={course._id} googleId={JSON.parse(localStorage.getItem("user")).googleId} />
       <hr />
       <h1 className="name">{course.name}</h1>
 
@@ -304,16 +295,7 @@ function CoursePage({ course }) {
                     setRecommendationCharCount(0);
                     setReviewCharCount(0);
 
-                    const confirmation = document.getElementById("review-rules-card");
-
-                    const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)")
-
-                    background.forEach((element) => {
-                      element.style.filter = "blur(5px)";
-                    });
-
-
-                    confirmation.style.display = "flex";
+          
                   }}
                 >
                   Reset
@@ -321,7 +303,6 @@ function CoursePage({ course }) {
               </div>
             </div>
           </form>
-
         </div>
       </div>
 
