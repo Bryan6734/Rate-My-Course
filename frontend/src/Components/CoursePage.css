@@ -4,7 +4,16 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+
 }
+
+/* blur cours epage except for review-rules-card */
+/* .course-page:not(.review-rules-card) > *:not(.review-rules-card) {
+  filter: blur(5px);
+} */
+
+
 
 .course-page h1 {
   font-size: 2rem;
