@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CoursePage.css";
 import ReviewDashboard from "./ReviewDashboard";
+import ReviewRulesCard from "./ReviewRulesCard";
 
 function CoursePage({ course }) {
   const [inputs, setInputs] = useState({
@@ -153,6 +154,7 @@ function CoursePage({ course }) {
 
   return (
     <div className="course-page">
+      <ReviewRulesCard/>
       <hr />
       <h1 className="name">{course.name}</h1>
 
@@ -301,6 +303,17 @@ function CoursePage({ course }) {
                     setAssignmentCharCount(0);
                     setRecommendationCharCount(0);
                     setReviewCharCount(0);
+
+                    const confirmation = document.getElementById("review-rules-card");
+
+                    const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)")
+
+                    background.forEach((element) => {
+                      element.style.filter = "blur(5px)";
+                    });
+
+
+                    confirmation.style.display = "flex";
                   }}
                 >
                   Reset
@@ -308,6 +321,7 @@ function CoursePage({ course }) {
               </div>
             </div>
           </form>
+
         </div>
       </div>
 
