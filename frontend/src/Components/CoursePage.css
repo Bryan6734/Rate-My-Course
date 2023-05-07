@@ -90,7 +90,7 @@
 }
 
 .course-page .dropdowns .animate-in {
-  max-height: 1000px;
+  max-height: 2000px;
   overflow-y: scroll;
   transition: all 0.5s ease-in-out;
 }
