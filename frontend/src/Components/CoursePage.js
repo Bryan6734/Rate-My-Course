@@ -103,32 +103,6 @@ function CoursePage({ course }) {
       element.style.filter = "blur(5px)";
     });
 
-
-    // const reviewData = JSON.stringify({ ...inputs, courseId: course._id, googleId: googleId });
-
-    // checkUserDuplicateReviews(googleId).then((result) => {
-    //   if (result) {
-    //     alert("You have already submitted a review for this course");
-    //   } else {
-    //     console.log("no duplicate reviews")
-    //     const text_to_check = [inputs.title, inputs.description, inputs.assignmentReview, inputs.recommendationReview];
-    //     checkReviewProfanity(text_to_check).then((result) => {
-    //       console.log("no profanity")
-    //       if (result) {
-    //         alert("Your review contains profanity. Please remove it and try again.");
-    //       } else {
-    //         const confirmation = document.getElementById("review-rules-card");
-    //         confirmation.style.display = "flex";
-
-    //         // const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)");
-
-    //         // background.forEach((element) => {
-    //         //   element.style.filter = "blur(5px)";
-    //         // });
-    //       }
-    //     });
-    //   }
-    // });
   };
 
   return (
