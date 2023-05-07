@@ -215,7 +215,7 @@ function CoursePage({ course }) {
                   name="assignmentReview"
                   id="assignment"
                   placeholder="What was your favorite assignment? What did the work consist of?"
-                  maxLength={200}
+                  maxLength={400}
                   value={inputs.assignmentReview || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -223,7 +223,7 @@ function CoursePage({ course }) {
                   }}
                 ></textarea>
                 <p className="char-count">
-                  {assignmentCharCount}/{200}
+                  {assignmentCharCount}/{400}
                 </p>
               </div>
 
@@ -232,7 +232,7 @@ function CoursePage({ course }) {
                   name="recommendationReview"
                   id="recommendation"
                   placeholder="What did a typical day in class look like?"
-                  maxLength={200}
+                  maxLength={400}
                   value={inputs.recommendationReview || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -241,7 +241,7 @@ function CoursePage({ course }) {
                 ></textarea>
 
                 <p className="char-count">
-                  {recommendationCharCount}/{200}
+                  {recommendationCharCount}/{400}
                 </p>
               </div>
               <div className="text-area-container">
@@ -249,7 +249,7 @@ function CoursePage({ course }) {
                   name="description"
                   id="description"
                   placeholder={"Why should someone choose to take " + course.name + "? "}
-                  maxLength={300}
+                  maxLength={500}
                   value={inputs.description || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -257,7 +257,7 @@ function CoursePage({ course }) {
                   }}
                 ></textarea>
                 <p className="char-count">
-                  {reviewCharCount}/{300}
+                  {reviewCharCount}/{500}
                 </p>
               </div>
             </div>
