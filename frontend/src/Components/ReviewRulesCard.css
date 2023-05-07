@@ -56,6 +56,8 @@
 .review-rules-card form .agreement input {
 
   flex: 0 0 20px;
+  /* 0 0 means it will not change based off rest of flex items */
+  /* 20px specifies base length (i.e. the flex basis property) */
 
 }
 
