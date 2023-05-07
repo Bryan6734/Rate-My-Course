@@ -1,5 +1,6 @@
 .review-rules-card {
   display: none;
+
   width: 80%;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
   border-radius: 5px;
@@ -11,13 +12,19 @@
   flex-direction: column;
   gap: 10px;
   max-width: 670px;
-  margin: 0 auto;
+  max-height: 80vh;
+  overflow-y: scroll;
+
+
+  margin: auto auto;
   position: absolute;
 
   background: white;
-  top: 50%;
+  top: 140px;
+
+
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   z-index: 200;
 }
 
@@ -33,25 +40,27 @@
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 0 10px;
+  gap: 15px;
+  padding: 10px 10px;
 }
 
 .review-rules-card form .agreement {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: right;
+  justify-content: left;
   gap: 10px;
+
 }
 
-/* make checkbox bigger */
+.review-rules-card form .agreement input {
 
-.review-rules-card form .agreement #checkbox {
-  display: flex;
-  flex-direction: row;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 20px;
+
 }
+
+
+
 
 .remember {
   display: flex;
@@ -89,7 +98,6 @@
   font-size: 1rem;
   /* width: 50%; */
   align-self: center;
-
 }
 
 .close {
