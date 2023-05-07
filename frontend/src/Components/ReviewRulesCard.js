@@ -10,18 +10,31 @@ function ReviewRulesCard({ data, courseId, googleId }) {
     const guideline_2 = document.getElementById("guideline-2").checked;
     const guideline_3 = document.getElementById("guideline-3").checked;
 
-    if (guideline_1 && guideline_2 && guideline_3) {
-      postReviewToMongoDB();
-    } else {
-      console.log("not all checked");
+    if (!guideline_1 || !guideline_2 || !guideline_3) {
+      alert("Please agree to all guidelines before submitting your review");
+      return;
     }
+
+    checkProfanity(data).then((containsProfanity) => {
+      if (containsProfanity) {
+        alert("Your review contains profanity. Please remove all profanity before submitting your review.");
+        return;
+      }
+
+      checkUserDuplicates().then((hasDuplicates) => {
+        if (hasDuplicates) {
+          alert("You have already submitted a review for this course. Please edit your existing review instead.");
+          return;
+        }
+
+        postReviewToMongoDB();
+      });
+    });
   };
 
   const postReviewToMongoDB = async () => {
-
-    console.log("Our data to post:")
+    console.log("Our data to post:");
     console.log(data);
-
 
     console.log(typeof data);
 
@@ -30,7 +43,7 @@ function ReviewRulesCard({ data, courseId, googleId }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...data, courseId: courseId, googleId: googleId })
+      body: JSON.stringify({ ...data, courseId: courseId, googleId: googleId }),
     });
 
     // const data = await response.json();
@@ -56,6 +69,20 @@ function ReviewRulesCard({ data, courseId, googleId }) {
     });
   };
 
+  const checkUserDuplicates = async () => {
+    // If at least one of the user's reviews has the same courseId as the current course, return true.
+    const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/user/${googleId}`);
+    const allUserReviews = await response.json();
+    return allUserReviews.some((review) => review.courseId === courseId);
+  };
+
+  const checkProfanity = async (data) => {
+    const unvalidatedText = data.title + " " + data.description + " " + data.recommendationReview + " " + data.assignmentReview;
+    const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${unvalidatedText}`);
+    const containsProfanity = await response.json();
+    return containsProfanity;
+  };
+
   return (
     <div className="review-rules-card" id="review-rules-card">
       <img className="close" src={close} alt="" onClick={handleClose} />
@@ -64,8 +91,6 @@ function ReviewRulesCard({ data, courseId, googleId }) {
         <h1>WAIT!</h1>
         <h3>Before submitting your review, please acknowledge our Community Guidelines.</h3>
       </div>
-
-      {/* create a form with check boxes */}
 
       <form className="agreements" onSubmit={handleSubmit}>
         <div className="agreement">

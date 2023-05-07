@@ -5,7 +5,7 @@ import ReviewCard from "./ReviewCard";
 function ReviewDashboard({ course }) {
   const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { 
 
     fetch(`https://rate-my-course-backend.onrender.com/reviews/course/${course._id}`)
       .then((res) => res.json())
