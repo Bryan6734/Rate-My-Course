@@ -52,7 +52,6 @@ function CoursePage({ course }) {
 
     review.classList.toggle("animate-in");
 
-    // wait for animation to finish
     if (!review.classList.contains("animate-in")) {
       setTimeout(() => {
         reviewContents.forEach((content) => {
@@ -80,6 +79,7 @@ function CoursePage({ course }) {
     });
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!localStorage.getItem("user")) {
@@ -94,48 +94,41 @@ function CoursePage({ course }) {
       return;
     }
 
-    const googleId = JSON.parse(localStorage.getItem("user")).googleId;
-    const reviewData = JSON.stringify({ ...inputs, courseId: course._id, googleId: googleId });
+    const confirmation = document.getElementById("review-rules-card");
+    confirmation.style.display = "flex";
+    
+    const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)");
 
-    // Checks for duplicated user review and returns a promise that resolves to a boolean
-    const checkUserDuplicateReviews = async () => {
-      // Obtain all the reviews written by the user
-      const response = await fetch(`https://rate-my-course-backend.onrender.com/reviews/user/${googleId}`);
-      const allUserReviews = await response.json();
-
-      return allUserReviews.some((review) => review.courseId === course._id);
-    };
-
-    const checkReviewProfanity = async (allReviewInfo) => {
-      const list_of_text = allReviewInfo.join(" ");
-      const response = await fetch(`https://www.purgomalum.com/service/containsprofanity?text=${list_of_text}`);
-      const data = await response.text();
-
-      return data === "true";
-    };
-
-    checkUserDuplicateReviews().then((result) => {
-      if (result) {
-        alert("You have already submitted a review for this course");
-      } else {
-        const text_to_check = [inputs.title, inputs.description, inputs.assignmentReview, inputs.recommendationReview];
-        checkReviewProfanity(text_to_check).then((result) => {
-          if (result) {
-            alert("Your review contains profanity. Please remove it and try again.");
-          } else {
-            const confirmation = document.getElementById("review-rules-card");
-
-            const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)");
-
-            background.forEach((element) => {
-              element.style.filter = "blur(5px)";
-            });
-
-            confirmation.style.display = "flex";
-          }
-        });
-      }
+    background.forEach((element) => {
+      element.style.filter = "blur(5px)";
     });
+
+
+    // const reviewData = JSON.stringify({ ...inputs, courseId: course._id, googleId: googleId });
+
+    // checkUserDuplicateReviews(googleId).then((result) => {
+    //   if (result) {
+    //     alert("You have already submitted a review for this course");
+    //   } else {
+    //     console.log("no duplicate reviews")
+    //     const text_to_check = [inputs.title, inputs.description, inputs.assignmentReview, inputs.recommendationReview];
+    //     checkReviewProfanity(text_to_check).then((result) => {
+    //       console.log("no profanity")
+    //       if (result) {
+    //         alert("Your review contains profanity. Please remove it and try again.");
+    //       } else {
+    //         const confirmation = document.getElementById("review-rules-card");
+    //         confirmation.style.display = "flex";
+
+    //         // const background = document.querySelectorAll(".course-page:not(.review-rules-card) > *:not(.review-rules-card)");
+
+    //         // background.forEach((element) => {
+    //         //   element.style.filter = "blur(5px)";
+    //         // });
+    //       }
+    //     });
+    //   }
+    // });
   };
 
   return (
@@ -222,7 +215,7 @@ function CoursePage({ course }) {
                   name="assignmentReview"
                   id="assignment"
                   placeholder="What was your favorite assignment? What did the work consist of?"
-                  maxLength={200}
+                  maxLength={400}
                   value={inputs.assignmentReview || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -230,7 +223,7 @@ function CoursePage({ course }) {
                   }}
                 ></textarea>
                 <p className="char-count">
-                  {assignmentCharCount}/{200}
+                  {assignmentCharCount}/{400}
                 </p>
               </div>
 
@@ -239,7 +232,7 @@ function CoursePage({ course }) {
                   name="recommendationReview"
                   id="recommendation"
                   placeholder="What did a typical day in class look like?"
-                  maxLength={200}
+                  maxLength={400}
                   value={inputs.recommendationReview || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -248,7 +241,7 @@ function CoursePage({ course }) {
                 ></textarea>
 
                 <p className="char-count">
-                  {recommendationCharCount}/{200}
+                  {recommendationCharCount}/{400}
                 </p>
               </div>
               <div className="text-area-container">
@@ -256,7 +249,7 @@ function CoursePage({ course }) {
                   name="description"
                   id="description"
                   placeholder={"Why should someone choose to take " + course.name + "? "}
-                  maxLength={300}
+                  maxLength={500}
                   value={inputs.description || ""}
                   onChange={(e) => {
                     handleChange(e);
@@ -264,7 +257,7 @@ function CoursePage({ course }) {
                   }}
                 ></textarea>
                 <p className="char-count">
-                  {reviewCharCount}/{300}
+                  {reviewCharCount}/{500}
                 </p>
               </div>
             </div>

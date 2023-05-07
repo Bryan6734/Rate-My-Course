@@ -5,7 +5,7 @@ import ReviewCard from "./ReviewCard";
 function ReviewDashboard({ course }) {
   const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
+  useEffect(() => { 
 
     fetch(`https://rate-my-course-backend.onrender.com/reviews/course/${course._id}`)
       .then((res) => res.json())
@@ -19,9 +19,13 @@ function ReviewDashboard({ course }) {
 
   return (
     <div className="review-dashboard">
-      {reviews.map((review, index) => {
-        return <ReviewCard key={index} review={review}/>;
-      })}
+      {reviews.length === 0 ? (
+      <p>Be the first to write a review!</p>
+      ) : (
+        reviews.map((review, index) => {
+          return <ReviewCard key={index} review={review} />;
+        })
+      )}
     </div>
   );
 }
